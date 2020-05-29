@@ -2,5 +2,11 @@ dist: bionic
 language: java
 jdk:
   - openjdk11
+before_install:
+  - pwd
+  - wget https://services.gradle.org/distributions/gradle-6.4.1-bin.zip
+  - unzip gradle-6.4.1-bin.zip
+  - export PATH=gradle-6.4.1/bin:$PATH
+  - gradle -version
 script:
   - gradle clean build test

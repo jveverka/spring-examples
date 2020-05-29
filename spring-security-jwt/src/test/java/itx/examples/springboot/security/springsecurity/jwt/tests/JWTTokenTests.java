@@ -27,6 +27,7 @@ import java.util.Set;
 public class JWTTokenTests {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testCreateAndVerifyJWTToken() throws KeyStoreInitializationException {
         KeyStoreService keyStoreService = new KeyStoreServiceImpl();
         long nowDate = LocalDate.now().toEpochSecond(LocalTime.now(), ZoneOffset.ofHours(0))*1000;
@@ -63,6 +64,7 @@ public class JWTTokenTests {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testReadJWTTokenWithoutVerification() throws KeyStoreInitializationException {
         KeyStoreService keyStoreService = new KeyStoreServiceImpl();
         long nowDate = LocalDate.now().toEpochSecond(LocalTime.now(), ZoneOffset.ofHours(0))*1000;

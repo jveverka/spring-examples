@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GenericSerializationTests {
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testReadWrite() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 

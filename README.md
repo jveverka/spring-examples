@@ -7,7 +7,7 @@ This project contains various not-so simple [spring-boot](https://spring.io/proj
 ### Environment setup
 Make sure following software is installed on your PC.
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
-* [Gradle 6.0](https://gradle.org/install/) or later
+* [Gradle 6.3](https://gradle.org/install/) or later
 
 ### Compile and Run
 ```
