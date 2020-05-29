@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <title>WS demo</title>
+</head>
+<body>
+<h1>WS demo</h1>
+
+In browser console (F12):
+<pre>
+socket = new WebSocket('ws://' + location.hostname + ':' + location.port + '/messages');
+socket.addEventListener('message', function (event) {
+    console.log('Message from server: ', event.data);
+});
+socket.addEventListener('close', function (event) {
+    console.log('Server closed connection!');
+});
+socket.send("hi from client");
+socket.close();
+</pre>
+
+</body>
+</html>

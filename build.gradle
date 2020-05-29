@@ -1,0 +1,11 @@
+
+project(':spring-bank') {}
+project(':springboot') {}
+project(':springboot-fileserver') {}
+project(':spring-security') {}
+project(':spring-security-jwt') {}
+project(':spring-jcasbin') {}
+project(':spring-di') {}
+project(':spring-websockets') {}
+project(':spring-oauth2-resource-server') {}
+

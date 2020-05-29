@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-yrazowjp.eu.auth0.com/
+          jwk-set-uri: https://dev-yrazowjp.eu.auth0.com/.well-known/jwks.json
+          jws-algorithm: RS256
+logging:
+  level:
+    root: TRACE

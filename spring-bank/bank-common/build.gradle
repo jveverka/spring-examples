@@ -1,0 +1,10 @@
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('com.fasterxml.jackson.core:jackson-annotations:2.10.1')
+}

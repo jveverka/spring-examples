@@ -1,0 +1,31 @@
+subprojects {
+
+    apply plugin: "java"
+
+    targetCompatibility = '11'
+    sourceCompatibility = '11'
+  
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'org.slf4j:slf4j-api:1.8.0-beta4'
+        implementation 'org.slf4j:slf4j-simple:1.8.0-beta4'
+    }
+}
+
+project(':bank-server') {
+    dependencies {
+        implementation project(':bank-common')
+    }
+}
+
+project(':bank-client') {
+    dependencies {
+        implementation project(':bank-common')
+    }
+}
+
+project(':bank-common') {
+}
