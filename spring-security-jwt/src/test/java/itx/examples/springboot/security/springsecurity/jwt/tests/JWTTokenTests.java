@@ -6,7 +6,6 @@ import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.impl.DefaultClaims;
-import io.jsonwebtoken.lang.Assert;
 import itx.examples.springboot.security.springsecurity.jwt.services.JWTUtils;
 import itx.examples.springboot.security.springsecurity.jwt.services.KeyStoreInitializationException;
 import itx.examples.springboot.security.springsecurity.jwt.services.KeyStoreService;
@@ -24,6 +23,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class JWTTokenTests {
 
     @Test
@@ -36,7 +37,7 @@ public class JWTTokenTests {
         String issuer = "Issuer";
         Set<String> roles = Sets.newSet("ROLE_USER", "ROLE_ADMIN");
         Key key = keyStoreService.createUserKey(userName);
-        Assert.notNull(key);
+        assertNotNull(key);
 
         //1. create JWT token
         String jwToken = Jwts.builder()
@@ -47,20 +48,20 @@ public class JWTTokenTests {
                 .setIssuedAt(new Date(nowDate))
                 .claim("roles", roles)
                 .compact();
-        Assert.notNull(jwToken);
+        assertNotNull(jwToken);
 
         //2. verify JWT token
         Jws<Claims> claimsJws = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(jwToken);
-        Assert.notNull(claimsJws);
+        assertNotNull(claimsJws);
         List<String> rolesFromJWT = (List<String>)claimsJws.getBody().get("roles");
-        Assert.notNull(rolesFromJWT);
-        Assert.isTrue(rolesFromJWT.size() == 2);
+        assertNotNull(rolesFromJWT);
+        assertEquals(2, rolesFromJWT.size());
 
         String subjectFromJWT = claimsJws.getBody().getSubject();
-        Assert.isTrue(userName.equals(UserId.from(subjectFromJWT)));
+        assertEquals(userName, UserId.from(subjectFromJWT));
 
         String issuerFromJWT = claimsJws.getBody().getIssuer();
-        Assert.isTrue(issuer.equals(issuerFromJWT));
+        assertEquals(issuer, issuerFromJWT);
     }
 
     @Test
@@ -73,7 +74,7 @@ public class JWTTokenTests {
         String issuer = "Issuer";
         Set<String> roles = Sets.newSet("ROLE_USER", "ROLE_ADMIN");
         Key key = keyStoreService.createUserKey(userName);
-        Assert.notNull(key);
+        assertNotNull(key);
 
         //1. create JWT token
         String jwToken = Jwts.builder()
@@ -84,7 +85,7 @@ public class JWTTokenTests {
                 .setIssuedAt(new Date(nowDate))
                 .claim("roles", roles)
                 .compact();
-        Assert.notNull(jwToken);
+        assertNotNull(jwToken);
 
         //2. read content of JWT token without signature (without knowing proper key)
         String jwtTokenWithoutSignature = JWTUtils.removeSignature(jwToken);
@@ -92,7 +93,7 @@ public class JWTTokenTests {
         Jwt jwt = parser.parse(jwtTokenWithoutSignature);
         DefaultClaims body = (DefaultClaims)jwt.getBody();
         String subjectFromJWT = body.get(Claims.SUBJECT, String.class);
-        Assert.isTrue(userName.equals(UserId.from(subjectFromJWT)));
+        assertEquals(userName, UserId.from(subjectFromJWT));
     }
 
     @Test
@@ -100,13 +101,13 @@ public class JWTTokenTests {
         KeyStoreService keyStoreService = new KeyStoreServiceImpl();
         UserId userName = UserId.from("UserName");
         Key userNameKey = keyStoreService.createUserKey(userName);
-        Assert.notNull(userNameKey);
+        assertNotNull(userNameKey);
         Optional<Key> userKey = keyStoreService.getUserKey(userName);
-        Assert.isTrue(userKey.isPresent());
+        assertTrue(userKey.isPresent());
         boolean removed = keyStoreService.removeUserKey(userName);
-        Assert.isTrue(removed);
+        assertTrue(removed);
         userKey = keyStoreService.getUserKey(userName);
-        Assert.isTrue(userKey.isEmpty());
+        assertTrue(userKey.isEmpty());
     }
 
 }

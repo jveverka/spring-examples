@@ -43,7 +43,7 @@ public class SecurityRestController {
     }
 
     @GetMapping("/logout")
-    public ResponseEntity logout() {
+    public ResponseEntity<Void> logout() {
         String authorization = request.getHeader("Authorization");
         JWToken jwToken = JWToken.from(JWTUtils.extractJwtToken(authorization));
         if (userAccessService.logout(jwToken)) {

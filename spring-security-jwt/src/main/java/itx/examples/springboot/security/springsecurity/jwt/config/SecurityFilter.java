@@ -19,9 +19,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -51,8 +49,6 @@ public class SecurityFilter implements Filter {
                 List<String> rolesFromJWT = (List<String>) verifiedClaims.get().getBody().get("roles");
                 Set<RoleId> setOfRoles = rolesFromJWT.stream().map(RoleId::new).collect(Collectors.toSet());
                 securityContext.setAuthentication(new AuthenticationImpl(userIdFromJWT, setOfRoles));
-                HttpSession session = httpServletRequest.getSession();
-                session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
                 chain.doFilter(request, response);
                 return;
             } else {
