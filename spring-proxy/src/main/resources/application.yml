@@ -1,0 +1,5 @@
+server:
+  port: 8088
+
+proxy:
+  base-url: http://localhost:8081/data

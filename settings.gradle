@@ -23,6 +23,9 @@ project(":spring-websockets").projectDir = new File("spring-websockets")
 include "spring-oauth2-resource-server"
 project(":spring-oauth2-resource-server").projectDir = new File("spring-oauth2-resource-server")
 
+include "spring-proxy"
+project(":spring-proxy").projectDir = new File("spring-proxy")
+
 include "spring-bank"
 include "bank-common"
 include "bank-client"
