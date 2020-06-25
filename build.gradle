@@ -1,7 +1,7 @@
 
 project(':spring-bank') {}
 project(':spring-demo') {}
-project(':springboot-fileserver') {}
+project(':spring-fileserver') {}
 project(':spring-security') {}
 project(':spring-security-jwt') {}
 project(':spring-jcasbin') {}

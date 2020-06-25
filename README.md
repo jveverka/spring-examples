@@ -15,13 +15,13 @@ gradle clean build test
 ```
 
 ### Examples
-* [spring dependency injection](spring-di) - simple dependency injection demo.
-* [spring jcasbin](spring-jcasbin) - simple integration example of jcasbin in spring app.
-* [spring security](spring-security) - cookie session tracking and web security.
-* [spring security-jwt](spring-security-jwt) - JWT based web security.
-* [spring boot](springboot) - basic springboot application.
-* [spring proxy](spring-proxy) - simple springboot http proxy demo.
-* [spring boot fileserver](springboot-fileserver) - simple file server ove REST APIs 
-* [spring websocket](spring-websockets) - simple websocket demo.
+* [__spring dependency injection__](spring-di) - simple dependency injection demo.
+* [__spring jcasbin__](spring-jcasbin) - simple integration example of jcasbin in spring app.
+* [__spring security__](spring-security) - cookie session tracking and web security.
+* [__spring security-jwt__](spring-security-jwt) - JWT based web security.
+* [__spring demo__](spring-demo) - basic springboot application.
+* [__spring proxy__](spring-proxy) - simple springboot http proxy demo.
+* [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
+* [__spring websocket__](spring-websockets) - simple websocket demo.
 
 _Enjoy !_
