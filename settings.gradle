@@ -1,6 +1,6 @@
 
-include "springboot"
-project(":springboot").projectDir = new File("springboot")
+include "spring-demo"
+project(":spring-demo").projectDir = new File("spring-demo")
 
 include "springboot-fileserver"
 project(":springboot-fileserver").projectDir = new File("springboot-fileserver")
