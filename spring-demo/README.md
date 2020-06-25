@@ -32,3 +32,12 @@ This is simple spring-boot application demo.
 gradle clean build test
 java -jar build/libs/spring-demo-1.0.0-SNAPSHOT.jar
 ```
+
+### Build Docker Image
+```
+docker build -t spring-demo-x86:1.0.0-SNAPSHOT --file Dockerfile.x86_64 .
+docker image list
+docker save --output="build/spring-demo-x86:1.0.0-SNAPSHOT.tar" spring-demo-x86:1.0.0-SNAPSHOT
+docker image rm -f <imageid>
+docker run -p 8081:8081 spring-demo-x86:1.0.0-SNAPSHOT
+```
