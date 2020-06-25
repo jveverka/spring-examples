@@ -7,7 +7,7 @@ This project contains various not-so simple [spring-boot](https://spring.io/proj
 ### Environment setup
 Make sure following software is installed on your PC.
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
-* [Gradle 6.3](https://gradle.org/install/) or later
+* [Gradle 6.5](https://gradle.org/install/) or later
 
 ### Compile and Run
 ```
@@ -20,7 +20,8 @@ gradle clean build test
 * [spring security](spring-security) - cookie session tracking and web security.
 * [spring security-jwt](spring-security-jwt) - JWT based web security.
 * [spring boot](springboot) - basic springboot application.
+* [spring proxy](spring-proxy) - simple springboot http proxy demo.
 * [spring boot fileserver](springboot-fileserver) - simple file server ove REST APIs 
-* [spring boot websocket](spring-websockets) - simple websocket demo.
+* [spring websocket](spring-websockets) - simple websocket demo.
 
 _Enjoy !_
