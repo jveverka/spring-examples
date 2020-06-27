@@ -34,6 +34,7 @@ java -jar build/libs/spring-demo-1.0.0-SNAPSHOT.jar
 ```
 
 ### Build Docker Image
+Docker images for x86-64 and ARM platform are ready. This example shows how to build x86-64 compatible docker image.
 ```
 docker build -t spring-demo-x86:1.0.0-SNAPSHOT --file Dockerfile.x86_64 .
 docker image list
