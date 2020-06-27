@@ -1,4 +1,7 @@
 # Spring-boot Proxy Server
+This demo shows simple spring boot proxy server used to access other REST service intercepting all requests.
+
+![architecture](docs/architecture-proxy.svg)
 
 ### Build and run
 ```

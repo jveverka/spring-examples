@@ -9,14 +9,14 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 @ConfigurationProperties(prefix = "proxy")
 public class ProxyConfig {
 
-    private String baseUrl;
+    private String targetUrl;
 
-    public String getBaseUrl() {
-        return baseUrl;
+    public String getTargetUrl() {
+        return targetUrl;
     }
 
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
+    public void setTargetUrl(String targetUrl) {
+        this.targetUrl = targetUrl;
     }
 
     @Bean
