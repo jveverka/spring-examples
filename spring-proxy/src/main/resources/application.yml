@@ -1,5 +1,11 @@
 server:
   port: 8088
+#  servlet:
+#    context-path: /auth
 
 proxy:
   target-url: http://localhost:8081/data
+
+logging:
+  level:
+    root: INFO
