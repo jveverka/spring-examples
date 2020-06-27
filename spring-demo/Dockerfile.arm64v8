@@ -1,4 +1,4 @@
-# Compatible with x86-64 systems
-FROM adoptopenjdk/openjdk11:jre-11.0.7_10-alpine
+# Tested on AWS ARM Graviton 2 (Neoverse-N1)
+FROM arm64v8/openjdk:11.0.7-jre-slim-buster
 COPY build/libs/spring-demo-1.0.0-SNAPSHOT.jar /spring-demo-1.0.0-SNAPSHOT.jar
 ENTRYPOINT ["java", "-Xms32m", "-Xms128M", "-jar","/spring-demo-1.0.0-SNAPSHOT.jar"]
