@@ -9,6 +9,8 @@ Make sure following software is installed on your PC.
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
 * [Gradle 6.5](https://gradle.org/install/) or later
 
+Please  check [system requirements](docs/system-requirements.md) before. 
+
 ### Compile and Run
 ```
 gradle clean build test
