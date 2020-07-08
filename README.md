@@ -5,11 +5,11 @@
 This project contains various not-so simple [spring-boot](https://spring.io/projects/spring-boot) demos.
 
 ### Environment setup
-Make sure following software is installed on your PC.
+Minimal requirements: Please make sure following software is installed on your PC.
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
 * [Gradle 6.5](https://gradle.org/install/) or later
 
-Please  check [system requirements](docs/system-requirements.md) before. 
+Please check [full system requirements](docs/system-requirements.md) for more details. 
 
 ### Compile and Run
 ```

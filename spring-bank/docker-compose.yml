@@ -1,0 +1,19 @@
+version: '3'
+services:
+  postgresql-server:
+    image: postgres:12.3-alpine
+    environment:
+      - POSTGRES_PASSWORD=secret
+    network_mode: "host"
+    ports:
+      - "5432:5432"
+  bank-server:
+    image: bank-server:1.0.0-SNAPSHOT
+    build:
+      context: bank-server
+      dockerfile: Dockerfile
+    network_mode: "host"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresql-server

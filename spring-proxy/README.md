@@ -25,3 +25,14 @@ docker save --output="build/spring-proxy-x86:1.0.0-SNAPSHOT.tar" spring-proxy-x8
 docker image rm -f <imageid>
 docker run -p 8081:8081 spring-proxy-x86:1.0.0-SNAPSHOT
 ```
+
+### Full stack docker-compose demo
+Use docker-compose to run complete stack:
+1. spring-proxy on localhost:8088
+2. spring-demo on localhost:8081
+```
+docker-compose up --build -d
+curl http://localhost:8081/data/info # <- direct call of target service
+curl http://localhost:8088/proxy/info # <- call target service via proxy
+docker-compose down -v --rmi all --remove-orphans
+```
