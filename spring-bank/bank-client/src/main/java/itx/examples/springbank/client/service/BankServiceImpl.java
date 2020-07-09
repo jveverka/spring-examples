@@ -38,6 +38,7 @@ public class BankServiceImpl implements BankService {
             HttpRequest request = HttpRequest.newBuilder()
                     .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(transactionRequest)))
                     .uri(URI.create(baseUri + "/transfer"))
+                    .header("Content-Type", "application/json")
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
@@ -55,6 +56,7 @@ public class BankServiceImpl implements BankService {
             HttpRequest request = HttpRequest.newBuilder()
                     .PUT(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(depositRequest)))
                     .uri(URI.create(baseUri + "/deposit"))
+                    .header("Content-Type", "application/json")
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
@@ -72,6 +74,7 @@ public class BankServiceImpl implements BankService {
             HttpRequest request = HttpRequest.newBuilder()
                     .PUT(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(withdrawRequest)))
                     .uri(URI.create(baseUri + "/withdraw"))
+                    .header("Content-Type", "application/json")
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
