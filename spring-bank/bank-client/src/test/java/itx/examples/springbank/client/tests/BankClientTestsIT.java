@@ -4,11 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import itx.examples.springbank.client.service.AdminServiceImpl;
 import itx.examples.springbank.client.service.BankServiceImpl;
 import itx.examples.springbank.client.service.SystemInfoServiceImpl;
+import itx.examples.springbank.common.dto.AccountId;
 import itx.examples.springbank.common.dto.Client;
 import itx.examples.springbank.common.dto.ClientId;
 import itx.examples.springbank.common.dto.CreateClientRequest;
+import itx.examples.springbank.common.dto.DepositRequest;
 import itx.examples.springbank.common.dto.ServiceException;
 import itx.examples.springbank.common.dto.SystemInfo;
+import itx.examples.springbank.common.dto.TransactionRequest;
+import itx.examples.springbank.common.dto.TransferRequest;
 import itx.examples.springbank.common.service.AdminService;
 import itx.examples.springbank.common.service.BankService;
 import itx.examples.springbank.common.service.SystemInfoService;
@@ -20,9 +24,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 
 import java.net.http.HttpClient;
 import java.util.Collection;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BankClientTestsIT {
@@ -32,7 +38,9 @@ public class BankClientTestsIT {
     private static SystemInfoService systemInfoService;
 
     private static ClientId clientId01;
+    private static AccountId accountId01;
     private static ClientId clientId02;
+    private static AccountId accountId02;
 
     @BeforeAll
     private static void init() {
@@ -81,10 +89,62 @@ public class BankClientTestsIT {
         Collection<Client> clients = adminService.getClients();
         assertNotNull(clients);
         assertEquals(2, clients.size());
+        Optional<Client> client01 = clients.stream().filter(c->c.getId().equals(clientId01)).findFirst();
+        assertTrue(client01.isPresent());
+        accountId01 = client01.get().getAccount().getId();
+        assertEquals(0L, client01.get().getAccount().getCredit());
+        Optional<Client> client02 = clients.stream().filter(c->c.getId().equals(clientId02)).findFirst();
+        assertTrue(client02.isPresent());
+        accountId02 = client02.get().getAccount().getId();
+        assertEquals(0L, client02.get().getAccount().getCredit());
     }
 
     @Test
     @Order(5)
+    public void testDepositCreditToClients() throws ServiceException {
+        DepositRequest request01 = new DepositRequest(accountId01, 100L);
+        bankService.deposit(request01);
+        DepositRequest request02 = new DepositRequest(accountId02, 100L);
+        bankService.deposit(request02);
+    }
+
+    @Test
+    @Order(6)
+    public void testCheckClientBalances() throws ServiceException {
+        Collection<Client> clients = adminService.getClients();
+        assertNotNull(clients);
+        assertEquals(2, clients.size());
+        Optional<Client> client01 = clients.stream().filter(c->c.getId().equals(clientId01)).findFirst();
+        assertTrue(client01.isPresent());
+        assertEquals(100L, client01.get().getAccount().getCredit());
+        Optional<Client> client02 = clients.stream().filter(c->c.getId().equals(clientId02)).findFirst();
+        assertTrue(client02.isPresent());
+        assertEquals(100L, client02.get().getAccount().getCredit());
+    }
+
+    @Test
+    @Order(7)
+    public void testTransferFunds() throws ServiceException {
+        TransactionRequest request = new TransactionRequest(accountId01, accountId02, 100L);
+        bankService.transferFunds(request);
+    }
+
+    @Test
+    @Order(8)
+    public void testCheckClientBalancesAgain() throws ServiceException {
+        Collection<Client> clients = adminService.getClients();
+        assertNotNull(clients);
+        assertEquals(2, clients.size());
+        Optional<Client> client01 = clients.stream().filter(c->c.getId().equals(clientId01)).findFirst();
+        assertTrue(client01.isPresent());
+        assertEquals(0L, client01.get().getAccount().getCredit());
+        Optional<Client> client02 = clients.stream().filter(c->c.getId().equals(clientId02)).findFirst();
+        assertTrue(client02.isPresent());
+        assertEquals(200L, client02.get().getAccount().getCredit());
+    }
+
+    @Test
+    @Order(9)
     public void removeClient01() throws ServiceException {
         adminService.deleteClient(clientId01);
         Collection<Client> clients = adminService.getClients();
@@ -93,7 +153,7 @@ public class BankClientTestsIT {
     }
 
     @Test
-    @Order(6)
+    @Order(10)
     public void removeClient02() throws ServiceException {
         adminService.deleteClient(clientId02);
         Collection<Client> clients = adminService.getClients();
