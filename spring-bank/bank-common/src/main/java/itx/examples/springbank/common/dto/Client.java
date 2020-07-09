@@ -1,5 +1,8 @@
 package itx.examples.springbank.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Client {
 
     private final ClientId id;
@@ -7,7 +10,11 @@ public class Client {
     private final String lastName;
     private final Account account;
 
-    public Client(ClientId id, String firstName, String lastName, Account account) {
+    @JsonCreator
+    public Client(@JsonProperty("id") ClientId id,
+                  @JsonProperty("firstName") String firstName,
+                  @JsonProperty("lastName") String lastName,
+                  @JsonProperty("account") Account account) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
