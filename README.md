@@ -25,5 +25,6 @@ gradle clean build test
 * [__spring proxy__](spring-proxy) - simple springboot http proxy demo.
 * [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
 * [__spring websocket__](spring-websockets) - simple websocket demo.
+* [__spring_bank__](spring-bank) - simple transactional web application.
 
 _Enjoy !_

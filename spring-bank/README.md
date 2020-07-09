@@ -1,5 +1,11 @@
 # Bank demo
+Simple Bank Demo which allows:
+* create and delete clients and accounts.
+* deposit and withdraw funds
+* transfer funds between clients
+* PostgreSQL database is used to store transactional data. 
 
+![architecture](docs/architecture.svg)
 
 ## Build and Run
 ```
