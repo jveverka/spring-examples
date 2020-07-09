@@ -7,6 +7,8 @@ import itx.examples.springbank.common.dto.ClientId;
 import itx.examples.springbank.common.dto.CreateClientRequest;
 import itx.examples.springbank.common.dto.ServiceException;
 import itx.examples.springbank.common.service.AdminService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,6 +18,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class AdminServiceImpl implements AdminService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AdminServiceImpl.class);
 
     private static final String SERVICE_PREFIX = "/services/admin";
 
@@ -35,14 +39,16 @@ public class AdminServiceImpl implements AdminService {
             HttpRequest request = HttpRequest.newBuilder()
                     .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(createClientRequest)))
                     .uri(URI.create(baseUri + "/client"))
+                    .header("Content-Type", "application/json")
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
             return mapper.readValue(response.body(), ClientId.class);
         } catch (Exception e) {
-            throw new ServiceException();
+            LOG.error("ERROR: ", e);
+            throw new ServiceException(e);
         }
     }
 
@@ -55,11 +61,12 @@ public class AdminServiceImpl implements AdminService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
             return mapper.readValue(response.body(), new TypeReference<List<Client>>(){});
         } catch (Exception e) {
-            throw new ServiceException();
+            LOG.error("ERROR: ", e);
+            throw new ServiceException(e);
         }
     }
 
@@ -72,10 +79,11 @@ public class AdminServiceImpl implements AdminService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
         } catch (Exception e) {
-            throw new ServiceException();
+            LOG.error("ERROR: ", e);
+            throw new ServiceException(e);
         }
     }
 

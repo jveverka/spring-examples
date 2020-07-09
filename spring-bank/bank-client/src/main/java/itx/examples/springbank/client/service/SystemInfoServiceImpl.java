@@ -37,12 +37,12 @@ public class SystemInfoServiceImpl implements SystemInfoService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
             return mapper.readValue(response.body(), SystemInfo.class);
         } catch (Exception e) {
             LOG.error("ERROR: ", e);
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 

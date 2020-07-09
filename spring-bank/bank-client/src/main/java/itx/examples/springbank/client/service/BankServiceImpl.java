@@ -8,6 +8,8 @@ import itx.examples.springbank.common.dto.ServiceException;
 import itx.examples.springbank.common.dto.TransactionRequest;
 import itx.examples.springbank.common.dto.WithdrawRequest;
 import itx.examples.springbank.common.service.BankService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,6 +17,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class BankServiceImpl implements BankService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(BankServiceImpl.class);
 
     private final static String SERVICE_PREFIX = "/services/bank";
 
@@ -37,10 +41,11 @@ public class BankServiceImpl implements BankService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
         } catch (Exception e) {
-            throw new ServiceException();
+            LOG.error("ERROR: ", e);
+            throw new ServiceException(e);
         }
     }
 
@@ -53,10 +58,11 @@ public class BankServiceImpl implements BankService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
         } catch (Exception e) {
-            throw new ServiceException();
+            LOG.error("ERROR: ", e);
+            throw new ServiceException(e);
         }
     }
 
@@ -69,10 +75,11 @@ public class BankServiceImpl implements BankService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
         } catch (Exception e) {
-            throw new ServiceException();
+            LOG.error("ERROR: ", e);
+            throw new ServiceException(e);
         }
     }
 
@@ -85,11 +92,11 @@ public class BankServiceImpl implements BankService {
                     .build();
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {
-                throw new ServiceException();
+                throw new ServiceException("Http status: " + response.statusCode());
             }
             return mapper.readValue(response.body(), Client.class);
         } catch (Exception e) {
-            throw new ServiceException();
+            throw new ServiceException(e);
         }
     }
 

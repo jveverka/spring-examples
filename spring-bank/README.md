@@ -21,7 +21,7 @@ Use docker-compose to run complete stack:
 #1. Start PostgreSQL Database and Bank-Server as docker containers 
 docker-compose up --build -d
 #2. Runt integration test suite
-gradle :bank-clients:clean :bank-clients:test -Dtest.profile=integration
+gradle :bank-client:clean :bank-client:test -Dtest.profile=integration
 #3. tear down docker containers
 docker-compose down -v --rmi all --remove-orphans
 ```
