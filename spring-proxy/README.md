@@ -34,5 +34,6 @@ Use docker-compose to run complete stack:
 docker-compose up --build -d
 curl http://localhost:8081/data/info # <- direct call of target service
 curl http://localhost:8088/proxy/info # <- call target service via proxy
+gradle clean test -Dtest.profile=integration
 docker-compose down -v --rmi all --remove-orphans
 ```
