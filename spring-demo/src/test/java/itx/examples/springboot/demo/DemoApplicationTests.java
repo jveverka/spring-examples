@@ -4,8 +4,6 @@ package itx.examples.springboot.demo;
 import itx.examples.springboot.demo.dto.DataMessage;
 import itx.examples.springboot.demo.dto.RequestInfo;
 import itx.examples.springboot.demo.dto.SystemInfo;
-import itx.examples.springboot.demo.dto.generic.ComplexDataPayload;
-import itx.examples.springboot.demo.dto.generic.SimpleDataPayload;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -36,9 +33,9 @@ public class DemoApplicationTests {
 
 	@Test
 	@Order(1)
-	public void testSystemInfo() throws MalformedURLException {
+	public void testSystemInfo() {
 		ResponseEntity<SystemInfo> response = restTemplate.getForEntity(
-				new URL("http://localhost:" + port + "/data/info").toString(), SystemInfo.class);
+				"http://localhost:" + port + "/data/info", SystemInfo.class);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		SystemInfo systemInfo = response.getBody();
 		assertNotNull(systemInfo);
@@ -49,10 +46,10 @@ public class DemoApplicationTests {
 
 	@Test
 	@Order(2)
-	public void testGetMessage() throws MalformedURLException {
+	public void testGetMessage() {
 		DataMessage message = new DataMessage("hi");
 		ResponseEntity<DataMessage> response = restTemplate.postForEntity(
-				new URL("http://localhost:" + port + "/data/message").toString(), message, DataMessage.class);
+				"http://localhost:" + port + "/data/message", message, DataMessage.class);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		DataMessage dataMessage = response.getBody();
 		assertNotNull(dataMessage);
@@ -61,10 +58,10 @@ public class DemoApplicationTests {
 
 	@Test
 	@Order(3)
-	public void testGetEcho() throws MalformedURLException {
+	public void testGetEcho() {
 		String message = "hi";
 		ResponseEntity<Void> response = restTemplate.getForEntity(
-				new URL("http://localhost:" + port + "/data/echo/" + message).toString(), Void.class);
+				"http://localhost:" + port + "/data/echo/" + message, Void.class);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 
