@@ -37,7 +37,9 @@ public class WSHandler implements WebSocketHandler {
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         TextMessage  textMessage = (TextMessage)message;
-        LOG.info("WS message: {} message={}", session.getId(), textMessage.getPayload());
+        String payload = textMessage.getPayload();
+        LOG.info("WS message: {} message={}", session.getId(), payload);
+        session.sendMessage(new TextMessage("Echo: " + payload));
     }
 
     @Override

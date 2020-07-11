@@ -7,13 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class Main {
+public class WsMain {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WsMain.class);
 
     public static void main(String[] args) {
         LOG.info("Spring web-socket demo started");
-        ConfigurableApplicationContext run = SpringApplication.run(Main.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(WsMain.class, args);
         run.registerShutdownHook();
     }
 
