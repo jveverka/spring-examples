@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Gradle](https://img.shields.io/badge/gradle-v6.5-blue)](https://img.shields.io/badge/gradle-v6.5-blue)
 [![Build Status](https://travis-ci.org/jveverka/spring-examples.svg?branch=master)](https://travis-ci.org/jveverka/spring-examples)
 
 # Spring-Boot demos
