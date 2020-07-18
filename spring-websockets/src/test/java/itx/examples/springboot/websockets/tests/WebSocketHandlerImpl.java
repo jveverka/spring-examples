@@ -25,8 +25,8 @@ public class WebSocketHandlerImpl implements WebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        this.clConnected.countDown();
         this.session = session;
+        this.clConnected.countDown();
     }
 
     @Override
