@@ -73,4 +73,20 @@ public class DemoApplicationTests {
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 
+	@Test
+	@Order(5)
+	public void testApiDocJson() {
+		ResponseEntity<String> response = restTemplate.getForEntity(
+				"http://localhost:" + port + "/v3/api-docs", String.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+
+	@Test
+	@Order(6)
+	public void testApiDocYaml() {
+		ResponseEntity<String> response = restTemplate.getForEntity(
+				"http://localhost:" + port + "/v3/api-docs.yaml", String.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+
 }

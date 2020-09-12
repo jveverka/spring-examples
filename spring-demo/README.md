@@ -20,9 +20,10 @@ This is simple spring-boot application demo.
   All http methods are supported.      
   __ALL__ http://localhost:8081/data/test 
   
-### Swagger API docs
-* __GET__ http://localhost:8081/v2/api-docs
-* __Swagger2 UI__ - http://localhost:8081/swagger-ui.html
+### OpenAPI v3 docs and Swagger UI
+* __GET__ http://localhost:8081/v3/api-docs
+* __GET__ http://localhost:8080/v3/api-docs.yaml
+* __Swagger2 UI__ - http://localhost:8081/swagger-ui/index.html?url=/v3/api-docs
 
 ## Static Resources
 * __GET__ http://localhost:8081/static/inex.html
