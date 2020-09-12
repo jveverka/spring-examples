@@ -2,6 +2,7 @@
 This is simple spring-boot application demo. 
 
 ### Rest Endpoints
+* __GET__ http://localhost:8081/data/build-info
 * __GET__ http://localhost:8081/data/info
 * __POST__ http://localhost:8081/data/message 
   ```
@@ -26,7 +27,7 @@ This is simple spring-boot application demo.
 * __Swagger2 UI__ - http://localhost:8081/swagger-ui/index.html?url=/v3/api-docs
 
 ## Static Resources
-* __GET__ http://localhost:8081/static/inex.html
+* __GET__ http://localhost:8081/static/index.html
 
 ### Build and run
 ```

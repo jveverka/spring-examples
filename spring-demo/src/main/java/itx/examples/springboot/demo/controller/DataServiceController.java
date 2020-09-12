@@ -12,6 +12,7 @@ import itx.examples.springboot.demo.dto.generic.SimpleDataPayload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +32,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 @RestController
@@ -40,9 +42,23 @@ public class DataServiceController {
     private static final Logger LOG = LoggerFactory.getLogger(DataServiceController.class);
 
     private final ApplicationConfig applicationConfig;
+    private final BuildProperties buildProperties;
 
-    public DataServiceController(@Autowired ApplicationConfig applicationConfig) {
+    public DataServiceController(@Autowired ApplicationConfig applicationConfig,
+                                 @Autowired(required = false) BuildProperties buildProperties) {
         this.applicationConfig = applicationConfig;
+        this.buildProperties = buildProperties;
+    }
+
+    @GetMapping(path = "/build-info", produces = MediaType.APPLICATION_JSON_VALUE )
+    public BuildProperties getBuildInfo() {
+        LOG.info("getBuildInfo:");
+        if (buildProperties != null) {
+            return buildProperties;
+        } else {
+            Properties entries = new Properties();
+            return new BuildProperties(entries);
+        }
     }
 
     @GetMapping(path = "/info", produces = MediaType.APPLICATION_JSON_VALUE )
