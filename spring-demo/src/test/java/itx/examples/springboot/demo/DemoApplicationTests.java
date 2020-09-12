@@ -54,6 +54,14 @@ public class DemoApplicationTests {
 
 	@Test
 	@Order(3)
+	public void testActuatorEndpoint() {
+		ResponseEntity<String> response = restTemplate.getForEntity(
+				"http://localhost:" + port + "/actuator", String.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+	}
+
+	@Test
+	@Order(4)
 	public void testGetMessage() {
 		DataMessage message = new DataMessage("hi");
 		ResponseEntity<DataMessage> response = restTemplate.postForEntity(
@@ -65,7 +73,7 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testGetEcho() {
 		String message = "hi";
 		ResponseEntity<Void> response = restTemplate.getForEntity(
@@ -74,7 +82,7 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	@Order(5)
+	@Order(6)
 	public void testRequestTester() {
 		ResponseEntity<RequestInfo> response = restTemplate.getForEntity(
 				"http://localhost:" + port + "/data/test", RequestInfo.class);
@@ -82,7 +90,7 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	@Order(6)
+	@Order(7)
 	public void testApiDocJson() {
 		ResponseEntity<String> response = restTemplate.getForEntity(
 				"http://localhost:" + port + "/v3/api-docs", String.class);
@@ -90,7 +98,7 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	@Order(7)
+	@Order(8)
 	public void testApiDocYaml() {
 		ResponseEntity<String> response = restTemplate.getForEntity(
 				"http://localhost:" + port + "/v3/api-docs.yaml", String.class);

@@ -26,6 +26,9 @@ This is simple spring-boot application demo.
 * __GET__ http://localhost:8080/v3/api-docs.yaml
 * __Swagger2 UI__ - http://localhost:8081/swagger-ui/index.html?url=/v3/api-docs
 
+## Actuator endpoints
+* __GET__ http://localhost:8081/actuator
+
 ## Static Resources
 * __GET__ http://localhost:8081/static/index.html
 
