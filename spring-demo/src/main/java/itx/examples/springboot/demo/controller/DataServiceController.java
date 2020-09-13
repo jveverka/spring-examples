@@ -1,6 +1,7 @@
 package itx.examples.springboot.demo.controller;
 
 import itx.examples.springboot.demo.config.ApplicationConfig;
+import itx.examples.springboot.demo.dto.BuildInfo;
 import itx.examples.springboot.demo.dto.DataMessage;
 import itx.examples.springboot.demo.dto.RequestInfo;
 import itx.examples.springboot.demo.dto.generic.ComplexDataPayload;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -51,13 +53,19 @@ public class DataServiceController {
     }
 
     @GetMapping(path = "/build-info", produces = MediaType.APPLICATION_JSON_VALUE )
-    public BuildProperties getBuildInfo() {
+    public BuildInfo getBuildInfo() {
         LOG.info("getBuildInfo:");
         if (buildProperties != null) {
-            return buildProperties;
+            LOG.info("getBuildInfo: {}", buildProperties.get("gitversion"));
+            return new BuildInfo(buildProperties.getTime().toString(),
+                    buildProperties.getVersion(),
+                    buildProperties.getName(),
+                    buildProperties.getArtifact(),
+                    buildProperties.getGroup(),
+                    buildProperties.get("gitfullhash"),
+                    buildProperties.get("gitbranchname"));
         } else {
-            Properties entries = new Properties();
-            return new BuildProperties(entries);
+            return new BuildInfo("", "", "", "", "", "", "");
         }
     }
 
