@@ -8,5 +8,6 @@ before_install:
   - unzip gradle-6.5-bin.zip
   - export PATH=gradle-6.5/bin:$PATH
   - gradle -version
+  - java -version
 script:
-  - gradle clean build test -i --warning-mode all
+  - gradle clean build test -i
