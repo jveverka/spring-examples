@@ -9,4 +9,4 @@ before_install:
   - export PATH=gradle-6.5/bin:$PATH
   - gradle -version
 script:
-  - gradle clean build test
+  - gradle clean build test -i --warning-mode all
