@@ -10,4 +10,4 @@ before_install:
   - gradle -version
   - java -version
 script:
-  - gradle clean build test -i
+  - gradle clean build test -i --stacktrace
