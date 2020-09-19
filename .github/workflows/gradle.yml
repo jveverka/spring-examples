@@ -1,5 +1,5 @@
 # This workflow will build a Java project with Gradle
-name: Java CI with Gradle
+name: Build and Test project with Java and Gradle
 
 on:
   push:
