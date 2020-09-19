@@ -28,5 +28,6 @@ gradle clean build test
 * [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
 * [__spring websocket__](spring-websockets) - simple websocket demo.
 * [__spring_bank__](spring-bank) - simple transactional web application.
+* [__spring_data__](spring-data) - jpa / spring data and Flyway demo.
 
 _Enjoy !_

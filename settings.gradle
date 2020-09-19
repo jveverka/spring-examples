@@ -26,6 +26,9 @@ project(":spring-oauth2-resource-server").projectDir = new File("spring-oauth2-r
 include "spring-proxy"
 project(":spring-proxy").projectDir = new File("spring-proxy")
 
+include "spring-data"
+project(":spring-data").projectDir = new File("spring-data")
+
 include "spring-bank"
 include "bank-common"
 include "bank-client"
