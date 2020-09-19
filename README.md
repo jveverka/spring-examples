@@ -1,6 +1,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
 [![Gradle](https://img.shields.io/badge/gradle-v6.5-blue)](https://img.shields.io/badge/gradle-v6.5-blue)
+![Build and Test](https://github.com/jveverka/spring-examples/workflows/Build%20and%20Test/badge.svg)
 
 # Spring-Boot demos
 This project contains various not-so simple [spring-boot](https://spring.io/projects/spring-boot) demos.
