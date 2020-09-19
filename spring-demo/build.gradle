@@ -29,8 +29,8 @@ springBoot {
 	buildInfo() {
 		properties {
 			additional = [
-					'gitfullhash'  : versionDetails().gitHashFull,
-					'gitbranchname': versionDetails().branchName
+					'gitfullhash'  : versionDetails? versionDetails().gitHashFull : "NA",
+					'gitbranchname': versionDetails? versionDetails().branchName : "NA"
 			]
 		}
 	}
