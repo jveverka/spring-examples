@@ -23,11 +23,11 @@ gradle clean build test
 * [__spring jcasbin__](spring-jcasbin) - simple integration example of jcasbin in spring app.
 * [__spring security__](spring-security) - cookie session tracking and web security.
 * [__spring security-jwt__](spring-security-jwt) - JWT based web security.
-* [__spring demo__](spring-demo) - basic springboot application.
+* [__spring demo__](spring-demo) - basic springboot application, actuator, buildinfo, swagger.
 * [__spring proxy__](spring-proxy) - simple springboot http proxy demo.
 * [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
 * [__spring websocket__](spring-websockets) - simple websocket demo.
-* [__spring_bank__](spring-bank) - simple transactional web application.
-* [__spring_data__](spring-data) - jpa / spring data and Flyway demo.
+* [__spring bank__](spring-bank) - simple transactional web application.
+* [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
 
 _Enjoy !_
