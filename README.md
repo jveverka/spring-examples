@@ -16,6 +16,7 @@ Please check [full system requirements](docs/system-requirements.md) for more de
 ### Compile and Run
 ```
 gradle clean build test
+gradle --build-file spring-api-first/build.gradle clean openApiGenerate build test
 ```
 
 ### Examples
@@ -29,5 +30,6 @@ gradle clean build test
 * [__spring websocket__](spring-websockets) - simple websocket demo.
 * [__spring bank__](spring-bank) - simple transactional web application.
 * [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
+* [__spring API first__](spring-api-first) - OpenAPI 3.0 API first application design. 
 
 _Enjoy !_

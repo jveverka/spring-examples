@@ -1,0 +1,57 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id "org.openapi.generator" version "4.3.1"
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'io.springfox:springfox-swagger2:2.6.0'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.1'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+// OpenAPI generator settings
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$rootDir/specs/api-spec-v3.0.yaml".toString()
+    outputDir = "$buildDir/generated/openapi".toString()
+    apiPackage = "itx.examples.apifirst.api"
+    invokerPackage = "itx.examples.apifirst.invoker"
+    modelPackage = "itx.examples.apifirst.model"
+    configOptions = [
+            dateLibrary: "java8",
+            delegatePattern: "true"
+    ]
+}
+
+// Add generated code to classpath
+sourceSets {
+    main {
+        java.srcDirs += "$buildDir/generated/openapi/src/main/java"
+    }
+}
+
+// Use custom main class
+springBoot {
+    mainClassName = 'itx.examples.apifirst.ApiFirstApp'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

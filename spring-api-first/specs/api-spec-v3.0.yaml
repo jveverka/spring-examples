@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Application API
+  description: Application API Specification.
+  version: 1.0.0
+
+paths:
+  /services/users:
+    get:
+      summary: Returns a list of users.
+      description: Returns a list of all available users.
+      responses:
+        '200':
+          description: A JSON array of Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /services/user:
+    post:
+      summary: Create User.
+      description: Create new user.
+      responses:
+        '200':
+          description: User created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUser'
+  /services/users/{userId}:
+    delete:
+      summary: Delete User.
+      description: Delete existing user.
+      responses:
+        '200':
+          description: User deleted.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+
+
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        enabled:
+          type: boolean
+      required:
+        - id
+        - name
+        - email
+        - enabled
+    CreateUser:
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        enabled:
+          type: boolean
+      required:
+        - name
+        - email
+        - enabled
