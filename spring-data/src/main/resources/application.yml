@@ -1,5 +1,6 @@
 server:
   port: 8080
+  shutdown: graceful
 
 spring:
   datasource:
@@ -14,6 +15,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
 
 logging:
   level:

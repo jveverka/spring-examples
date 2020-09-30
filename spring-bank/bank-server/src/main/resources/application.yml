@@ -1,0 +1,23 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: secret
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
