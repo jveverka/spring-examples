@@ -6,6 +6,8 @@ spring:
   datasource:
     platform: portgres
     initialization-mode: always
+    #schema: classpath:script/sql/schema.sql
+    data: classpath:script/sql/data.sql
   jpa:
     database: POSTGRESQL
     show-sql: true

@@ -1,9 +1,6 @@
 package itx.examples.springdata.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +10,10 @@ public class UserEntity {
     @Id
     @Column(name = "id")
     private String id;
+
+    @OneToOne
+    @JoinColumn(name =  "address")
+    private AddressEntity address;
 
     @Column(name = "name")
     private String name;
@@ -29,6 +30,14 @@ public class UserEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 
     public String getName() {

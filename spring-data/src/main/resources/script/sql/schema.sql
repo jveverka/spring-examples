@@ -10,10 +10,9 @@ create table ADDRESSES
 
 create table APP_USERS
 (
-   id      varchar(42)  primary key,
+   id      varchar(42) primary key,
    address varchar(42)  not null references ADDRESSES (id),
    name    varchar(100) not null,
-   email   varchar(100) not null
+   email   varchar(100) not null,
+   enabled boolean not null default true
 );
-
-
