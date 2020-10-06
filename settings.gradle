@@ -29,6 +29,9 @@ project(":spring-proxy").projectDir = new File("spring-proxy")
 include "spring-data"
 project(":spring-data").projectDir = new File("spring-data")
 
+include "spring-webflux"
+project(":spring-webflux").projectDir = new File("spring-webflux")
+
 include "spring-bank"
 include "bank-common"
 include "bank-client"
