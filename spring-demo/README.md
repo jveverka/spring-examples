@@ -24,7 +24,7 @@ This is simple spring-boot application demo.
 ### OpenAPI v3 docs and Swagger UI
 * __GET__ http://localhost:8081/v3/api-docs
 * __GET__ http://localhost:8081/v3/api-docs.yaml
-* __Swagger2 UI__ - http://localhost:8081/swagger-ui/index.html?url=/v3/api-docs
+* __Swagger UI__ - http://localhost:8081/swagger-ui/index.html?url=/v3/api-docs
 
 ## Actuator endpoints
 * __GET__ http://localhost:8081/actuator
