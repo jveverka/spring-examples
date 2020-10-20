@@ -19,27 +19,27 @@ public class UserController {
 
     @PostMapping()
     private Mono<UserData> createEmployee(@RequestBody CreateUserData createUserData) {
-        return null;
+        return userService.create(createUserData);
     }
 
     @GetMapping("/{id}")
     private Mono<UserData> getEmployeeById(@PathVariable String id) {
-        return null;
+        return userService.getEmployee(id);
     }
 
     @GetMapping
     private Flux<UserData> getAllEmployees() {
-        return null;
+        return userService.getAll();
     }
 
     @PutMapping()
     private Mono<UserData> updateEmployee(@RequestBody UserData employee) {
-        return null;
+        return userService.update(employee);
     }
 
     @DeleteMapping("/{id}")
     private Mono<UserData> deleteEmployee(@PathVariable String id) {
-        return null;
+        return userService.delete(id);
     }
 
 }
