@@ -42,6 +42,7 @@ public class UserAccessServiceImpl implements UserAccessService {
         this.users.put(UserId.from("joe"), new UserData(UserId.from("joe"), Password.from("secret"), "ROLE_USER"));
         this.users.put(UserId.from("jane"), new UserData(UserId.from("jane"), Password.from("secret"), "ROLE_ADMIN", "ROLE_USER"));
         this.users.put(UserId.from("alice"), new UserData(UserId.from("alice"), Password.from("secret"), "ROLE_PUBLIC"));
+        this.users.put(UserId.from("zorg"), new UserData(UserId.from("zorg"), Password.from("secret"), "ROLE_SUPER_ADMIN", "SUPER_ADMIN_AUTHORITY", "WRITE"));
     }
 
     @Override

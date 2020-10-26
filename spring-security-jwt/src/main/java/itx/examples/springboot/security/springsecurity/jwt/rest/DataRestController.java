@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +30,7 @@ public class DataRestController {
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping("/users/all")
-    public ResponseEntity<ServerData> getForUsersData(Authentication authentication) {
+    public ResponseEntity<ServerData> getDataForUsers(Authentication authentication) {
         LOG.info("getData: authentication={}", authentication.getName());
         authentication.getAuthorities().forEach(a ->
             LOG.info("  authority={}", a.getAuthority())
@@ -44,6 +46,12 @@ public class DataRestController {
             LOG.info("  authority={}", a.getAuthority())
         );
         return ResponseEntity.ok().body(dataService.getSecuredData("Secured for ADMIN " + authentication.getName()));
+    }
+
+    @GetMapping("/users/super-admins/all")
+    @PreAuthorize("hasAuthority('SUPER_ADMIN_AUTHORITY') and hasRole('SUPER_ADMIN') and hasPermission(filterObject, 'WRITE')")
+    public ResponseEntity<ServerData> getDataForAdminsOnly(Authentication authentication) {
+        return getDataForAdmins(authentication);
     }
 
 }
