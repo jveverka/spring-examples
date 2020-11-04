@@ -3,23 +3,24 @@ package itx.examples.spring.kafka.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DataMessage {
+public class MessageReply {
 
-    private final String id;
     private final String message;
+    private final Float duration;
 
     @JsonCreator
-    public DataMessage(@JsonProperty("id") String id,
-                       @JsonProperty("message") String message) {
-        this.id = id;
+    public MessageReply(@JsonProperty("message") String message,
+                        @JsonProperty("duration") Float duration) {
         this.message = message;
+        this.duration = duration;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public String getId() {
-        return id;
+    public Float getDuration() {
+        return duration;
     }
+
 }

@@ -1,5 +1,16 @@
 # Spring kafka demo
 
+## REST endpoints
+* __POST__ ``/services/send-message`` - send message, fire and forget.
+* __POST__ ``/services/send-message-and-get-response`` - send message, and wait for reply.
+
+### message
+```
+{
+  "message": "your-message-here"
+}
+``` 
+
 ## Download and Start kafka locally
 Download [kafka](https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz) and unzip
 ```

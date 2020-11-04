@@ -1,10 +1,18 @@
-itx/examples/spring/kafka/services/MessageProducer.java
- itx.examples.spring.kafka.services.MessageProducer
+itx/examples/spring/kafka/dto/deserializer/DataMessageDeserializer.java
+ itx.examples.spring.kafka.dto.deserializer.DataMessageDeserializer
 itx/examples/spring/kafka/dto/DataMessage.java
  itx.examples.spring.kafka.dto.DataMessage
+itx/examples/spring/kafka/services/MessageProducer.java
+ itx.examples.spring.kafka.services.MessageProducer
+itx/examples/spring/kafka/dto/serializer/DataMessageSerializer.java
+ itx.examples.spring.kafka.dto.serializer.DataMessageSerializer
+itx/examples/spring/kafka/AppKafka.java
+ itx.examples.spring.kafka.AppKafka
+itx/examples/spring/kafka/dto/MessageReply.java
+ itx.examples.spring.kafka.dto.MessageReply
+itx/examples/spring/kafka/dto/MessageRequest.java
+ itx.examples.spring.kafka.dto.MessageRequest
 itx/examples/spring/kafka/services/MessageConsumer.java
  itx.examples.spring.kafka.services.MessageConsumer
 itx/examples/spring/kafka/controller/DataController.java
  itx.examples.spring.kafka.controller.DataController
-itx/examples/spring/kafka/AppKafka.java
- itx.examples.spring.kafka.AppKafka
