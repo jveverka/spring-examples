@@ -1,7 +1,7 @@
 # Spring kafka demo
 
 ## Download and Start kafka locally
-Download [kafka]() and unzip
+Download [kafka](https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz) and unzip
 ```
 tar -xzf kafka_2.13-2.6.0.tgz
 cd kafka_2.13-2.6.0
