@@ -11,3 +11,4 @@ project(':spring-oauth2-resource-server') {}
 project(':spring-proxy') {}
 project(':spring-data') {}
 project(':spring-webflux') {}
+project(':spring-kafka') {}

@@ -32,6 +32,9 @@ project(":spring-data").projectDir = new File("spring-data")
 include "spring-webflux"
 project(":spring-webflux").projectDir = new File("spring-webflux")
 
+include "spring-kafka"
+project(":spring-kafka").projectDir = new File("spring-kafka")
+
 include "spring-bank"
 include "bank-common"
 include "bank-client"
