@@ -29,7 +29,7 @@ public class MessageConsumer {
         return future;
     }
 
-    @KafkaListener(topics = "service-requests", groupId = "group_id")
+    @KafkaListener(topics = "service-requests", groupId = "the-group")
     public void consume(DataMessage message) throws IOException {
         LOGGER.info("#### Consumed message -> {} {}", message.getId(), message.getMessage());
         CompletableFuture<DataMessage> future = counters.remove(message.getId());
