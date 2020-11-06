@@ -32,9 +32,6 @@ project(":spring-data").projectDir = new File("spring-data")
 include "spring-webflux"
 project(":spring-webflux").projectDir = new File("spring-webflux")
 
-include "spring-kafka"
-project(":spring-kafka").projectDir = new File("spring-kafka")
-
 include "spring-bank"
 include "bank-common"
 include "bank-client"
@@ -43,4 +40,15 @@ project(":spring-bank").projectDir = new File("spring-bank")
 project(":bank-common").projectDir = new File("spring-bank/bank-common")
 project(":bank-client").projectDir = new File("spring-bank/bank-client")
 project(":bank-server").projectDir = new File("spring-bank/bank-server")
+
+include "spring-kafka"
+include "kafka-common"
+include "kafka-simple"
+include "kafka-producer"
+include "kafka-consumer"
+project(":spring-kafka").projectDir = new File("spring-kafka")
+project(":kafka-common").projectDir = new File("spring-kafka/kafka-common")
+project(":kafka-simple").projectDir = new File("spring-kafka/kafka-simple")
+project(":kafka-producer").projectDir = new File("spring-kafka/kafka-producer")
+project(":kafka-consumer").projectDir = new File("spring-kafka/kafka-consumer")
 
