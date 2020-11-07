@@ -40,7 +40,7 @@ public class EventConsumer {
         this.messages.clear();
     }
 
-    @KafkaListener(topics = "request-test-topic", groupId = "the-group")
+    @KafkaListener(topics = "prod-con-test-topic", groupId = "the-group")
     public void consume(EventWrapper<? extends AsyncEvent> message) throws IOException {
         LOGGER.info("#### Consumed message -> {} {}", message.getType());
         if (message.getType().equals(DataMessageAsyncEvent.class)) {

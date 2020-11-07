@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class EventProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventProducer.class);
-    private static final String TOPIC = "request-test-topic";
+    private static final String TOPIC = "prod-con-test-topic";
 
     private final KafkaTemplate<String, EventWrapper<? extends AsyncEvent>> kafkaTemplate;
 

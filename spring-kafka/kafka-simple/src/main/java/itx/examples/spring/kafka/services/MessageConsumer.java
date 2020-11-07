@@ -30,7 +30,7 @@ public class MessageConsumer {
         return future;
     }
 
-    @KafkaListener(topics = "service-requests", groupId = "the-group")
+    @KafkaListener(topics = "simple-test-topic", groupId = "the-group")
     public void consume(EventWrapper<DataMessageAsyncEvent> message) throws IOException {
         LOGGER.info("#### Consumed message -> {} {}", message.getEvent().getId(), message.getEvent().getMessage());
         CompletableFuture<DataMessageAsyncEvent> future = counters.remove(message.getEvent().getId());
