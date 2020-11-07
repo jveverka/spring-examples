@@ -5,14 +5,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CreateAccountRequest {
 
-    private final Long credit;
+    private final String name;
+    private final Integer credit;
 
     @JsonCreator
-    public CreateAccountRequest(@JsonProperty("credit") Long credit) {
+    public CreateAccountRequest(@JsonProperty("name") String name, @JsonProperty("credit") Integer credit) {
+        this.name = name;
         this.credit = credit;
     }
 
-    public Long getCredit() {
+    public String getName() {
+        return name;
+    }
+
+    public Integer getCredit() {
         return credit;
     }
 

@@ -8,18 +8,19 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         use = JsonTypeInfo.Id.CLASS,
         property = "typeId"
 )
-public class DeleteAccountEvent implements EventMarker {
+public class DeleteAccountAsyncEvent implements AccountAsyncEvent {
 
     private final String id;
     private final String accountId;
 
     @JsonCreator
-    public DeleteAccountEvent(@JsonProperty("id") String id,
-                              @JsonProperty("accountId") String accountId) {
+    public DeleteAccountAsyncEvent(@JsonProperty("id") String id,
+                                   @JsonProperty("accountId") String accountId) {
         this.id = id;
         this.accountId = accountId;
     }
 
+    @Override
     public String getId() {
         return id;
     }

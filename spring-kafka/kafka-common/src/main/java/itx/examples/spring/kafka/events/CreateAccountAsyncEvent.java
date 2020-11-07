@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         use = JsonTypeInfo.Id.CLASS,
         property = "typeId"
 )
-public class CreateAccountEvent implements EventMarker {
+public class CreateAccountAsyncEvent implements AccountAsyncEvent {
 
     private final String id;
     private final String accountId;
@@ -16,16 +16,17 @@ public class CreateAccountEvent implements EventMarker {
     private final Integer credit;
 
     @JsonCreator
-    public CreateAccountEvent(@JsonProperty("id") String id,
-                              @JsonProperty("accountId") String accountId,
-                              @JsonProperty("name") String name,
-                              @JsonProperty("credit") Integer credit) {
+    public CreateAccountAsyncEvent(@JsonProperty("id") String id,
+                                   @JsonProperty("accountId") String accountId,
+                                   @JsonProperty("name") String name,
+                                   @JsonProperty("credit") Integer credit) {
         this.id = id;
         this.accountId = accountId;
         this.name = name;
         this.credit = credit;
     }
 
+    @Override
     public String getId() {
         return id;
     }

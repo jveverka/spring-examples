@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         use = JsonTypeInfo.Id.CLASS,
         property = "typeId"
 )
-public class TransferFundsEvent implements EventMarker {
+public class TransferFundsAsyncEvent implements AccountAsyncEvent {
 
     private final String id;
     private final String sourceAccountId;
@@ -16,16 +16,17 @@ public class TransferFundsEvent implements EventMarker {
     private final Integer credit;
 
     @JsonCreator
-    public TransferFundsEvent(@JsonProperty("id") String id,
-                              @JsonProperty("sourceAccountId") String sourceAccountId,
-                              @JsonProperty("destinationAccountId") String destinationAccountId,
-                              @JsonProperty("credit") Integer credit) {
+    public TransferFundsAsyncEvent(@JsonProperty("id") String id,
+                                   @JsonProperty("sourceAccountId") String sourceAccountId,
+                                   @JsonProperty("destinationAccountId") String destinationAccountId,
+                                   @JsonProperty("credit") Integer credit) {
         this.id = id;
         this.sourceAccountId = sourceAccountId;
         this.destinationAccountId = destinationAccountId;
         this.credit = credit;
     }
 
+    @Override
     public String getId() {
         return id;
     }

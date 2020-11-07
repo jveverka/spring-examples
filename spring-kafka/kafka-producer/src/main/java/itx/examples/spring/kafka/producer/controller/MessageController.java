@@ -1,6 +1,6 @@
 package itx.examples.spring.kafka.producer.controller;
 
-import itx.examples.spring.kafka.events.DataMessageEvent;
+import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 import itx.examples.spring.kafka.dto.MessageRequest;
 import itx.examples.spring.kafka.producer.service.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class MessageController {
 
     @PostMapping()
     public ResponseEntity<Void> sendMessage(@RequestBody MessageRequest message) {
-        eventProducer.sendMessage(new DataMessageEvent(UUID.randomUUID().toString(), message.getMessage()));
+        eventProducer.sendMessage(new DataMessageAsyncEvent(UUID.randomUUID().toString(), message.getMessage()));
         return ResponseEntity.ok().build();
     }
 

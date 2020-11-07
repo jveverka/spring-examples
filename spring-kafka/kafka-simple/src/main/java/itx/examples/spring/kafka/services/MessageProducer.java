@@ -1,6 +1,6 @@
 package itx.examples.spring.kafka.services;
 
-import itx.examples.spring.kafka.events.DataMessageEvent;
+import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 import itx.examples.spring.kafka.events.EventWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +14,13 @@ public class MessageProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(MessageProducer.class);
     private static final String TOPIC = "service-requests";
 
-    private final KafkaTemplate<String, EventWrapper<DataMessageEvent>> kafkaTemplate;
+    private final KafkaTemplate<String, EventWrapper<DataMessageAsyncEvent>> kafkaTemplate;
 
-    public MessageProducer(@Autowired KafkaTemplate<String, EventWrapper<DataMessageEvent>> kafkaTemplate) {
+    public MessageProducer(@Autowired KafkaTemplate<String, EventWrapper<DataMessageAsyncEvent>> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(EventWrapper<DataMessageEvent> message) {
+    public void sendMessage(EventWrapper<DataMessageAsyncEvent> message) {
         LOGGER.info("#### Producing message: {} {}", message.getEvent().getId(), message.getEvent().getMessage());
         this.kafkaTemplate.send(TOPIC, message);
     }

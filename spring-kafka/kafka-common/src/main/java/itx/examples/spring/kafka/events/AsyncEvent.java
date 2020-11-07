@@ -6,5 +6,5 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         use = JsonTypeInfo.Id.CLASS,
         property = "typeId"
 )
-public interface EventMarker {
+public interface AsyncEvent {
 }

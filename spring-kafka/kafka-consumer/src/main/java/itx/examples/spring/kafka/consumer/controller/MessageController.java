@@ -1,7 +1,7 @@
 package itx.examples.spring.kafka.consumer.controller;
 
 import itx.examples.spring.kafka.consumer.service.EventConsumer;
-import itx.examples.spring.kafka.events.DataMessageEvent;
+import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public class MessageController {
     }
 
     @GetMapping()
-    public ResponseEntity<Collection<DataMessageEvent>> sendMessage() {
+    public ResponseEntity<Collection<DataMessageAsyncEvent>> sendMessage() {
         return ResponseEntity.ok(eventConsumer.getMessages());
     }
 

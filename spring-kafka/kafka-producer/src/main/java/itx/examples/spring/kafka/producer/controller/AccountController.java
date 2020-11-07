@@ -2,34 +2,54 @@ package itx.examples.spring.kafka.producer.controller;
 
 import itx.examples.spring.kafka.dto.AccountId;
 import itx.examples.spring.kafka.dto.CreateAccountRequest;
-import itx.examples.spring.kafka.dto.MessageRequest;
 import itx.examples.spring.kafka.dto.TransferFundsRequest;
+import itx.examples.spring.kafka.events.CreateAccountAsyncEvent;
+import itx.examples.spring.kafka.events.DeleteAccountAsyncEvent;
+import itx.examples.spring.kafka.events.TransferFundsAsyncEvent;
+import itx.examples.spring.kafka.producer.service.EventProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.websocket.server.PathParam;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/services/accounts")
 public class AccountController {
 
+    private final EventProducer eventProducer;
+
+    public AccountController(EventProducer eventProducer) {
+        this.eventProducer = eventProducer;
+    }
+
     @PostMapping()
     public ResponseEntity<AccountId> createAccount(@RequestBody CreateAccountRequest request) {
-        return ResponseEntity.ok().build();
+        String accountId = UUID.randomUUID().toString();
+        CreateAccountAsyncEvent createAccountAsyncEvent = new CreateAccountAsyncEvent(
+                UUID.randomUUID().toString(), accountId, request.getName(), request.getCredit()
+        );
+        eventProducer.sendAccountMessage(createAccountAsyncEvent);
+        return ResponseEntity.ok(new AccountId(accountId));
     }
 
     @DeleteMapping("/{account-id}")
-    public ResponseEntity<Void> deleteAccount(@PathParam("account-id") String accountId) {
+    public ResponseEntity<Void> deleteAccount(@PathVariable("account-id") String accountId) {
+        DeleteAccountAsyncEvent deleteAccountAsyncEvent = new DeleteAccountAsyncEvent(UUID.randomUUID().toString(), accountId);
+        eventProducer.sendAccountMessage(deleteAccountAsyncEvent);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping()
-    public ResponseEntity<Void> transferFunds(@PathParam("account-id") TransferFundsRequest request) {
+    public ResponseEntity<Void> transferFunds(@RequestBody TransferFundsRequest request) {
+        TransferFundsAsyncEvent transferFundsAsyncEvent = new TransferFundsAsyncEvent(UUID.randomUUID().toString(),
+                request.getSourceAccountId(), request.getDestinationAccountId(), request.getCredit());
+        eventProducer.sendAccountMessage(transferFundsAsyncEvent);
         return ResponseEntity.ok().build();
     }
 

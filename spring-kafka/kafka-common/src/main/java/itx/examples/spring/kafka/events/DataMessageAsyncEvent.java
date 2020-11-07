@@ -8,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         use = JsonTypeInfo.Id.CLASS,
         property = "typeId"
 )
-public class DataMessageEvent implements EventMarker {
+public class DataMessageAsyncEvent implements AsyncEvent {
 
     private final String id;
     private final String message;
 
     @JsonCreator
-    public DataMessageEvent(@JsonProperty("id") String id,
-                            @JsonProperty("message") String message) {
+    public DataMessageAsyncEvent(@JsonProperty("id") String id,
+                                 @JsonProperty("message") String message) {
         this.id = id;
         this.message = message;
     }

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class EventWrapper<T extends EventMarker> {
+public class EventWrapper<T extends AsyncEvent> {
 
     private final T event;
 
@@ -18,7 +18,7 @@ public class EventWrapper<T extends EventMarker> {
     }
 
     @JsonIgnore
-    public Class<? extends EventMarker> getType() {
+    public Class<? extends AsyncEvent> getType() {
         return event.getClass();
     }
 

@@ -1,6 +1,6 @@
 package itx.examples.spring.kafka.controller;
 
-import itx.examples.spring.kafka.events.DataMessageEvent;
+import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 import itx.examples.spring.kafka.dto.MessageReply;
 import itx.examples.spring.kafka.dto.MessageRequest;
 import itx.examples.spring.kafka.events.EventWrapper;
@@ -33,7 +33,7 @@ public class DataController {
 
     @PostMapping("/send-message")
     public ResponseEntity<Void> sendMessage(@RequestBody MessageRequest message) {
-        DataMessageEvent dataMessageEvent = new DataMessageEvent(UUID.randomUUID().toString(), message.getMessage());
+        DataMessageAsyncEvent dataMessageEvent = new DataMessageAsyncEvent(UUID.randomUUID().toString(), message.getMessage());
         messageProducer.sendMessage(new EventWrapper<>(dataMessageEvent));
         return ResponseEntity.ok().build();
     }
@@ -41,10 +41,10 @@ public class DataController {
     @PostMapping("/send-message-and-get-response")
     public ResponseEntity<MessageReply> sendMessageAndGetResponse(@RequestBody MessageRequest message) throws ExecutionException, InterruptedException {
         long timestamp = System.nanoTime();
-        DataMessageEvent dataMessageEvent = new DataMessageEvent(UUID.randomUUID().toString(), message.getMessage());
-        Future<DataMessageEvent> future = messageConsumer.getFuture(dataMessageEvent.getId());
+        DataMessageAsyncEvent dataMessageEvent = new DataMessageAsyncEvent(UUID.randomUUID().toString(), message.getMessage());
+        Future<DataMessageAsyncEvent> future = messageConsumer.getFuture(dataMessageEvent.getId());
         messageProducer.sendMessage(new EventWrapper<>(dataMessageEvent));
-        DataMessageEvent reply = future.get();
+        DataMessageAsyncEvent reply = future.get();
         float duration = (System.nanoTime() - timestamp)/(1_000_000F);
         return ResponseEntity.ok(new MessageReply(reply.getMessage(), duration));
     }

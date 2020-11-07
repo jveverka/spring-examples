@@ -1,6 +1,6 @@
 package itx.examples.spring.kafka.services;
 
-import itx.examples.spring.kafka.events.DataMessageEvent;
+import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 import itx.examples.spring.kafka.events.EventWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,22 +18,22 @@ public class MessageConsumer {
 
     private final Logger LOGGER = LoggerFactory.getLogger(MessageConsumer.class);
 
-    private final Map<String, CompletableFuture<DataMessageEvent>> counters;
+    private final Map<String, CompletableFuture<DataMessageAsyncEvent>> counters;
 
     public MessageConsumer() {
         this.counters = new ConcurrentHashMap<>();
     }
 
-    public Future<DataMessageEvent> getFuture(String id) {
+    public Future<DataMessageAsyncEvent> getFuture(String id) {
         CompletableFuture future  = new CompletableFuture();
         counters.put(id, future);
         return future;
     }
 
     @KafkaListener(topics = "service-requests", groupId = "the-group")
-    public void consume(EventWrapper<DataMessageEvent> message) throws IOException {
+    public void consume(EventWrapper<DataMessageAsyncEvent> message) throws IOException {
         LOGGER.info("#### Consumed message -> {} {}", message.getEvent().getId(), message.getEvent().getMessage());
-        CompletableFuture<DataMessageEvent> future = counters.remove(message.getEvent().getId());
+        CompletableFuture<DataMessageAsyncEvent> future = counters.remove(message.getEvent().getId());
         if (future != null) {
             future.complete(message.getEvent());
         }
