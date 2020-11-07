@@ -28,3 +28,11 @@ bin/kafka-server-start.sh config/server.properties
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic simple-test-topic
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic prod-con-test-topic
 ```
+
+## Start locally with docker-compose
+See original [docker-compose.yml](https://raw.githubusercontent.com/bitnami/bitnami-docker-kafka/master/docker-compose.yml) file 
+or [kafka on hub.docker.io](https://hub.docker.com/r/bitnami/kafka/). 
+```
+docker-compose up -d
+docker-compose down
+```
