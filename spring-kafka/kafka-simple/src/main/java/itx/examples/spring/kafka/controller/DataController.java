@@ -1,8 +1,9 @@
 package itx.examples.spring.kafka.controller;
 
-import itx.examples.spring.kafka.dto.DataMessage;
+import itx.examples.spring.kafka.events.DataMessageEvent;
 import itx.examples.spring.kafka.dto.MessageReply;
 import itx.examples.spring.kafka.dto.MessageRequest;
+import itx.examples.spring.kafka.events.EventWrapper;
 import itx.examples.spring.kafka.services.MessageConsumer;
 import itx.examples.spring.kafka.services.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +33,18 @@ public class DataController {
 
     @PostMapping("/send-message")
     public ResponseEntity<Void> sendMessage(@RequestBody MessageRequest message) {
-        messageProducer.sendMessage(new DataMessage(UUID.randomUUID().toString(), message.getMessage()));
+        DataMessageEvent dataMessageEvent = new DataMessageEvent(UUID.randomUUID().toString(), message.getMessage());
+        messageProducer.sendMessage(new EventWrapper<>(dataMessageEvent));
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/send-message-and-get-response")
     public ResponseEntity<MessageReply> sendMessageAndGetResponse(@RequestBody MessageRequest message) throws ExecutionException, InterruptedException {
         long timestamp = System.nanoTime();
-        DataMessage dataMessage = new DataMessage(UUID.randomUUID().toString(), message.getMessage());
-        Future<DataMessage> future = messageConsumer.getFuture(dataMessage.getId());
-        messageProducer.sendMessage(dataMessage);
-        DataMessage reply = future.get();
+        DataMessageEvent dataMessageEvent = new DataMessageEvent(UUID.randomUUID().toString(), message.getMessage());
+        Future<DataMessageEvent> future = messageConsumer.getFuture(dataMessageEvent.getId());
+        messageProducer.sendMessage(new EventWrapper<>(dataMessageEvent));
+        DataMessageEvent reply = future.get();
         float duration = (System.nanoTime() - timestamp)/(1_000_000F);
         return ResponseEntity.ok(new MessageReply(reply.getMessage(), duration));
     }

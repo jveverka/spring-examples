@@ -1,8 +1,8 @@
 package itx.examples.spring.kafka.producer.controller;
 
-import itx.examples.spring.kafka.dto.DataMessage;
+import itx.examples.spring.kafka.events.DataMessageEvent;
 import itx.examples.spring.kafka.dto.MessageRequest;
-import itx.examples.spring.kafka.producer.service.MessageProducer;
+import itx.examples.spring.kafka.producer.service.EventProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/services")
-public class ProducerController {
+@RequestMapping("/services/messages")
+public class MessageController {
 
-    private final MessageProducer messageProducer;
+    private final EventProducer eventProducer;
 
     @Autowired
-    public ProducerController(MessageProducer messageProducer) {
-        this.messageProducer = messageProducer;
+    public MessageController(EventProducer eventProducer) {
+        this.eventProducer = eventProducer;
     }
 
-    @PostMapping("/send-message")
+    @PostMapping()
     public ResponseEntity<Void> sendMessage(@RequestBody MessageRequest message) {
-        messageProducer.sendMessage(new DataMessage(UUID.randomUUID().toString(), message.getMessage()));
+        eventProducer.sendMessage(new DataMessageEvent(UUID.randomUUID().toString(), message.getMessage()));
         return ResponseEntity.ok().build();
     }
 

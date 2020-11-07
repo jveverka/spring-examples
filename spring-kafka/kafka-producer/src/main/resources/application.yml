@@ -5,4 +5,4 @@ spring:
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: itx.examples.spring.kafka.dto.serializer.DataMessageSerializer
+      value-serializer: itx.examples.spring.kafka.events.serializer.DataMessageSerializer

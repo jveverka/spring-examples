@@ -1,12 +1,12 @@
-package itx.examples.spring.kafka.dto.deserializer;
+package itx.examples.spring.kafka.events.deserializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import itx.examples.spring.kafka.dto.DataMessage;
+import itx.examples.spring.kafka.events.EventWrapper;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.io.IOException;
 
-public class DataMessageDeserializer implements Deserializer<DataMessage> {
+public class DataMessageDeserializer implements Deserializer<EventWrapper> {
 
     private final ObjectMapper mapper;
 
@@ -15,9 +15,9 @@ public class DataMessageDeserializer implements Deserializer<DataMessage> {
     }
 
     @Override
-    public DataMessage deserialize(String topic, byte[] data) {
+    public EventWrapper deserialize(String topic, byte[] data) {
         try {
-            return mapper.readValue(data, DataMessage.class);
+            return mapper.readValue(data, EventWrapper.class);
         } catch (IOException e) {
             return null;
         }

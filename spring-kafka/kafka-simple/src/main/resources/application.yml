@@ -6,8 +6,8 @@ spring:
       bootstrap-servers: localhost:9092
       group-id: the-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: itx.examples.spring.kafka.dto.deserializer.DataMessageDeserializer
+      value-deserializer: itx.examples.spring.kafka.events.deserializer.DataMessageDeserializer
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: itx.examples.spring.kafka.dto.serializer.DataMessageSerializer
+      value-serializer: itx.examples.spring.kafka.events.serializer.DataMessageSerializer
