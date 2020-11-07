@@ -1,8 +1,18 @@
 # Spring kafka demos
 
+* [__kafka-simple__](kafka-simple) - request-response simple demo.
 * [__kafka-producer__](kafka-producer) - app producing messages.
 * [__kafka-consumer__](kafka-consumer) - app consuming messages.
-* [__kafka-simple__](kafka-simple) - request-response simple demo.
+
+![architecture](docs/kafka-demo.svg)
+
+## Compile & Run 
+```
+gradle clean build
+java -jar kafka-simple/build/libs/kafka-simple-1.0.0-SNAPSHOT.jar
+java -jar kafka-producer/build/libs/kafka-producer-1.0.0-SNAPSHOT.jar
+java -jar kafka-consumer/build/libs/kafka-consumer-1.0.0-SNAPSHOT.jar
+```
 
 ## Download and Start kafka locally
 Download [kafka](https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz) and unzip
