@@ -4,6 +4,7 @@ import itx.examples.spring.kafka.dto.Account;
 import itx.examples.spring.kafka.dto.AccountId;
 import itx.examples.spring.kafka.events.CreateAccountAsyncEvent;
 import itx.examples.spring.kafka.events.DeleteAccountAsyncEvent;
+import itx.examples.spring.kafka.events.DepositAccountAsyncEvent;
 import itx.examples.spring.kafka.events.TransferFundsAsyncEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,22 +45,41 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public synchronized boolean deleteAccount(DeleteAccountAsyncEvent deleteAccountAsyncEvent) {
         LOGGER.info("Deleting account {}", deleteAccountAsyncEvent.getAccountId());
-        return accounts.remove(deleteAccountAsyncEvent.getAccountId()) != null;
+        Account account = accounts.remove(deleteAccountAsyncEvent.getAccountId());
+        if (account != null) {
+            LOGGER.error("Account {} not found !", deleteAccountAsyncEvent.getAccountId());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public synchronized boolean transferFunds(TransferFundsAsyncEvent transferFundsAsyncEvent) {
         Account source = accounts.get(transferFundsAsyncEvent.getSourceAccountId());
         Account destination = accounts.get(transferFundsAsyncEvent.getDestinationAccountId());
-        if (source != null && destination != null & source.getCredit() >= transferFundsAsyncEvent.getCredit()) {
+        if (source != null && destination != null && source.getCredit() >= transferFundsAsyncEvent.getCredit()) {
             LOGGER.info("transferring funds {} -> {} {}", source.getName(), destination.getName(), transferFundsAsyncEvent.getCredit());
             Account sourceAfterTransaction = new Account(source.getAccountId(), source.getName(), (source.getCredit() - transferFundsAsyncEvent.getCredit()));
             Account destinationAfterTransaction = new Account(destination.getAccountId(), destination.getName(), (destination.getCredit() + transferFundsAsyncEvent.getCredit()));
-            accounts.put(sourceAfterTransaction.getAccountId(),  sourceAfterTransaction);
-            accounts.put(destinationAfterTransaction.getAccountId(),  destinationAfterTransaction);
+            accounts.put(sourceAfterTransaction.getAccountId(), sourceAfterTransaction);
+            accounts.put(destinationAfterTransaction.getAccountId(), destinationAfterTransaction);
             return true;
         } else {
-            LOGGER.error("Transfer funds transaction {} has failed !", transferFundsAsyncEvent.getId());
+            LOGGER.error("Transfer funds transaction {} has failed !", transferFundsAsyncEvent.getSourceAccountId());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean depositFunds(DepositAccountAsyncEvent depositAccountAsyncEvent) {
+        Account account = accounts.get(depositAccountAsyncEvent.getAccountId());
+        if (account != null && (account.getCredit() + depositAccountAsyncEvent.getCredit()) > 0) {
+            Account accountAfterTransaction = new Account(account.getAccountId(), account.getName(), (account.getCredit() + depositAccountAsyncEvent.getCredit()));
+            accounts.put(accountAfterTransaction.getAccountId(), accountAfterTransaction);
+            return true;
+        } else {
+            LOGGER.error("Deposit has failed {} !", depositAccountAsyncEvent.getAccountId());
             return false;
         }
     }

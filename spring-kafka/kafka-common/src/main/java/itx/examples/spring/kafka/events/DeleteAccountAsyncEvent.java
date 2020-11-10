@@ -25,6 +25,11 @@ public class DeleteAccountAsyncEvent implements AccountAsyncEvent {
         return id;
     }
 
+    @Override
+    public String keyMessageKey() {
+        return accountId;
+    }
+
     public String getAccountId() {
         return accountId;
     }

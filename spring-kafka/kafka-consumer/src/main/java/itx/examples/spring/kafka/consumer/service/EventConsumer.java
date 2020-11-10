@@ -4,6 +4,7 @@ import itx.examples.spring.kafka.events.CreateAccountAsyncEvent;
 import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 import itx.examples.spring.kafka.events.AsyncEvent;
 import itx.examples.spring.kafka.events.DeleteAccountAsyncEvent;
+import itx.examples.spring.kafka.events.DepositAccountAsyncEvent;
 import itx.examples.spring.kafka.events.EventWrapper;
 import itx.examples.spring.kafka.events.TransferFundsAsyncEvent;
 import org.slf4j.Logger;
@@ -55,6 +56,11 @@ public class EventConsumer {
         } else if (message.getType().equals(TransferFundsAsyncEvent.class)) {
             EventWrapper<TransferFundsAsyncEvent> wrapper = (EventWrapper<TransferFundsAsyncEvent>)message;
             accountService.transferFunds(wrapper.getEvent());
+        } else if (message.getType().equals(DepositAccountAsyncEvent.class)) {
+            EventWrapper<DepositAccountAsyncEvent> wrapper = (EventWrapper<DepositAccountAsyncEvent>)message;
+            accountService.depositFunds(wrapper.getEvent());
+        } else {
+            LOGGER.error("ERROR: unsupported message type {}", message.getType());
         }
     }
 

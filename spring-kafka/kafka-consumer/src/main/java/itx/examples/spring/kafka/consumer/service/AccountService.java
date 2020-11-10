@@ -4,6 +4,7 @@ import itx.examples.spring.kafka.dto.Account;
 import itx.examples.spring.kafka.dto.AccountId;
 import itx.examples.spring.kafka.events.CreateAccountAsyncEvent;
 import itx.examples.spring.kafka.events.DeleteAccountAsyncEvent;
+import itx.examples.spring.kafka.events.DepositAccountAsyncEvent;
 import itx.examples.spring.kafka.events.TransferFundsAsyncEvent;
 
 import java.util.Collection;
@@ -16,6 +17,8 @@ public interface AccountService {
     boolean deleteAccount(DeleteAccountAsyncEvent deleteAccountAsyncEvent);
 
     boolean transferFunds(TransferFundsAsyncEvent transferFundsAsyncEvent);
+
+    boolean depositFunds(DepositAccountAsyncEvent depositAccountAsyncEvent);
 
     Collection<Account> getAccounts();
 

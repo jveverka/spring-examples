@@ -2,9 +2,11 @@ package itx.examples.spring.kafka.producer.controller;
 
 import itx.examples.spring.kafka.dto.AccountId;
 import itx.examples.spring.kafka.dto.CreateAccountRequest;
+import itx.examples.spring.kafka.dto.DepositAccountRequest;
 import itx.examples.spring.kafka.dto.TransferFundsRequest;
 import itx.examples.spring.kafka.events.CreateAccountAsyncEvent;
 import itx.examples.spring.kafka.events.DeleteAccountAsyncEvent;
+import itx.examples.spring.kafka.events.DepositAccountAsyncEvent;
 import itx.examples.spring.kafka.events.TransferFundsAsyncEvent;
 import itx.examples.spring.kafka.producer.service.EventProducer;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,15 @@ public class AccountController {
         );
         eventProducer.sendAccountMessage(createAccountAsyncEvent);
         return ResponseEntity.ok(new AccountId(accountId));
+    }
+
+    @PutMapping("/deposit")
+    public ResponseEntity<Void> depositAccount(@RequestBody DepositAccountRequest request) {
+        DepositAccountAsyncEvent depositAccountAsyncEvent = new DepositAccountAsyncEvent(
+                UUID.randomUUID().toString(), request.getAccountId(), request.getCredit()
+        );
+        eventProducer.sendAccountMessage(depositAccountAsyncEvent);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{account-id}")

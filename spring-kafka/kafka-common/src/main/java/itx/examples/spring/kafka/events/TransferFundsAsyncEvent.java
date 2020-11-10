@@ -31,6 +31,11 @@ public class TransferFundsAsyncEvent implements AccountAsyncEvent {
         return id;
     }
 
+    @Override
+    public String keyMessageKey() {
+        return sourceAccountId;
+    }
+
     public String getSourceAccountId() {
         return sourceAccountId;
     }
