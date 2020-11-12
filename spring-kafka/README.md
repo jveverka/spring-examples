@@ -12,6 +12,7 @@
 gradle clean build
 java -jar kafka-simple/build/libs/kafka-simple-1.0.0-SNAPSHOT.jar --server.port=8080
 java -jar kafka-producer/build/libs/kafka-producer-1.0.0-SNAPSHOT.jar --server.port=8081
+java -jar kafka-consumer/build/libs/kafka-consumer-1.0.0-SNAPSHOT.jar --server.port=8091 --spring.kafka.consumer.group-id=group-01
 ```
 
 ## Download and Start kafka locally
