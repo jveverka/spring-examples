@@ -5,8 +5,8 @@ import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
 
 public interface EventProducer {
 
-    void sendMessage(DataMessageAsyncEvent message);
+    void sendMessage(DataMessageAsyncEvent message) throws EventPublishException;
 
-    void sendAccountMessage(AccountAsyncEvent accountAsyncEvent);
+    void sendAccountMessage(AccountAsyncEvent accountAsyncEvent) throws EventPublishException;
 
 }

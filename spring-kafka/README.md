@@ -11,8 +11,7 @@
 gradle clean build
 java -jar kafka-simple/build/libs/kafka-simple-1.0.0-SNAPSHOT.jar --server.port=8080
 java -jar kafka-producer/build/libs/kafka-producer-1.0.0-SNAPSHOT.jar --server.port=8081
-java -jar kafka-consumer/build/libs/kafka-consumer-1.0.0-SNAPSHOT.jar --server.port=8091 --spring.kafka.consumer.group-id=group-01
-```
+cd cd ```
 
 ## Download and Start kafka locally
 Download [kafka](https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz) and unzip
@@ -26,7 +25,7 @@ bin/kafka-server-start.sh config/server.properties
 
 #create topic service-requests
 bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic simple-test-topic
-bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic prod-con-test-topic
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 4 --topic prod-con-test-topic
 ```
 
 ## Start locally with docker-compose
