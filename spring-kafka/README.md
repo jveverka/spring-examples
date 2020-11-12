@@ -3,6 +3,7 @@
 * [__kafka-simple__](kafka-simple) - request-response simple demo.
 * [__kafka-producer__](kafka-producer) - app producing messages.
 * [__kafka-consumer__](kafka-consumer) - app consuming messages.
+* [__producer-consumer-demo__](docs/Producer-Consumer-Demo.md)
 
 ![architecture](docs/kafka-demo.svg)
 
@@ -11,7 +12,7 @@
 gradle clean build
 java -jar kafka-simple/build/libs/kafka-simple-1.0.0-SNAPSHOT.jar --server.port=8080
 java -jar kafka-producer/build/libs/kafka-producer-1.0.0-SNAPSHOT.jar --server.port=8081
-cd cd ```
+```
 
 ## Download and Start kafka locally
 Download [kafka](https://downloads.apache.org/kafka/2.6.0/kafka_2.13-2.6.0.tgz) and unzip
