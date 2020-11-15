@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'itx.examples.springdata'
+group = 'itx.examples.springmongo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -17,15 +17,12 @@ ext {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.postgresql:postgresql'
-    implementation 'org.flywaydb:flyway-core'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
 }
 
 dependencyManagement {
