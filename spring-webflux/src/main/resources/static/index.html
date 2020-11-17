@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>WebFlux demo</title>
+</head>
+<body>
+<h1>WebFlux demo</h1>
+
+In browser console (F12):
+<pre>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == XMLHttpRequest.LOADING) {
+       console.log('Loading: ...');
+    } else if (xhttp.readyState == XMLHttpRequest.DONE) {
+       if (xhttp.status == 200) {
+           console.log('Processing Done!');
+       } else {
+           console.log('Error: ' + xhttp.status);
+       }
+    }
+};
+xhttp.open("GET", "/users/stream", true);
+
+xhttp.send();
+</pre>
+
+</body>
+</html>

@@ -3,7 +3,15 @@ package itx.examples.webflux.controller;
 import itx.examples.webflux.dto.CreateUserData;
 import itx.examples.webflux.dto.UserData;
 import itx.examples.webflux.services.UserService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -40,6 +48,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     private Mono<UserData> deleteEmployee(@PathVariable String id) {
         return userService.delete(id);
+    }
+
+    @GetMapping(value = "/stream", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    private Flux<UserData> streamAllEmployees() {
+        return Flux.from(userService.getAllStream());
     }
 
 }

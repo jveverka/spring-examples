@@ -5,6 +5,6 @@ This is probably simplest websocket demo one can create with [Spring Boot](https
 ## Build and Run
 ```
 gradle clean build test
-java -jar build/libs/spring-websockets-0.0.1-SNAPSHOT.jar
+java -jar build/libs/spring-websockets-1.0.0-SNAPSHOT.jar
 ```
 Go to __index.html__ at ``http://localhost:8080/index.html`` and follow on-screen instructions.
