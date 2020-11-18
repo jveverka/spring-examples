@@ -20,6 +20,8 @@ public interface UserService {
 
     Mono<UserData> delete(String id);
 
+    void createUsersBulk(Integer n);
+
     Publisher<UserData> getAllStream();
 
 }

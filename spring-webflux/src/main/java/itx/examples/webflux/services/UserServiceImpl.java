@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.PostConstruct;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,17 +23,6 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl() {
         this.data = new ConcurrentHashMap<>();
-    }
-
-    @PostConstruct
-    public void init() {
-        int users = 10000;
-        LOG.info("initializing user data ...");
-        for (int i=0; i<users; i++) {
-            String id = "user-id-" + i;
-            data.put(id, new UserData(id, "email" + i + "@corp.com", "name-" + i));
-        }
-        LOG.info("created {} users", users);
     }
 
     @Override
@@ -73,6 +61,16 @@ public class UserServiceImpl implements UserService {
         } else {
             return Mono.empty();
         }
+    }
+
+    @Override
+    public void createUsersBulk(Integer n) {
+        LOG.info("createUsersBulk n={} ...", n);
+        for (int i=0; i<n; i++) {
+            String id = "user-id-" + i;
+            data.put(id, new UserData(id, "email" + i + "@corp.com", "name-" + i));
+        }
+        LOG.info("created {} users", n);
     }
 
     @Override

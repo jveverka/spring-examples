@@ -50,6 +50,11 @@ public class UserController {
         return userService.delete(id);
     }
 
+    @PutMapping("/create/{n}")
+    private void createUsersBulk(@PathVariable Integer n) {
+        userService.createUsersBulk(n);
+    }
+
     @GetMapping(value = "/stream", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     private Flux<UserData> streamAllEmployees() {
         return Flux.from(userService.getAllStream());
