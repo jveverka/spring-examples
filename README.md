@@ -31,6 +31,7 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 * [__spring bank__](spring-bank) - simple transactional web application.
 * [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
 * [__spring API first__](spring-api-first) - OpenAPI 3.0 API first application design. 
+* [__spring webflux__](spring-webflux) - Spring Webflux example.
 
 ### Topics
 * [__JUnit5__](https://github.com/junit-team/junit5/) - [all projects]()
