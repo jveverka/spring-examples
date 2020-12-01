@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      uri: http://localhost:8888
+      fail-fast: true

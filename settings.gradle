@@ -55,3 +55,9 @@ project(":kafka-simple").projectDir = new File("spring-kafka/kafka-simple")
 project(":kafka-producer").projectDir = new File("spring-kafka/kafka-producer")
 project(":kafka-consumer").projectDir = new File("spring-kafka/kafka-consumer")
 
+include "spring-cloud-config"
+include "cloud-config-client"
+include "cloud-config-server"
+project(":spring-cloud-config").projectDir = new File("spring-cloud-config")
+project(":cloud-config-client").projectDir = new File("spring-cloud-config/cloud-config-client")
+project(":cloud-config-server").projectDir = new File("spring-cloud-config/cloud-config-server")

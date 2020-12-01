@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://${user.home}/tmp/config-data
+
+logging:
+  level:
+    root: DEBUG

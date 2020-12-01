@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: cloud-config-client
+      uri: http://localhost:8888
+      fail-fast: true

@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
@@ -12,10 +12,6 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('testcontainersVersion', "1.14.3")
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -24,14 +20,9 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-    }
+    testImplementation 'org.testcontainers:testcontainers:1.15.0'
+    testImplementation 'org.testcontainers:junit-jupiter:1.15.0'
+    testImplementation 'org.testcontainers:postgresql:1.15.0'
 }
 
 test {

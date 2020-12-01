@@ -1,0 +1,18 @@
+subprojects {
+
+    apply plugin: "java"
+
+    targetCompatibility = '11'
+    sourceCompatibility = '11'
+  
+    repositories {
+        mavenCentral()
+    }
+
+}
+
+project(':cloud-config-client') {
+}
+
+project(':cloud-config-server') {
+}
