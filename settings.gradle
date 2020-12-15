@@ -35,6 +35,9 @@ project(":spring-webflux").projectDir = new File("spring-webflux")
 include "spring-mongo"
 project(":spring-mongo").projectDir = new File("spring-mongo")
 
+include "spring-redis"
+project(":spring-redis").projectDir = new File("spring-redis")
+
 include "spring-bank"
 include "bank-common"
 include "bank-client"

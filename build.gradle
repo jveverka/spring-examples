@@ -14,3 +14,4 @@ project(':spring-webflux') {}
 project(':spring-kafka') {}
 project(':spring-mongo') {}
 project(':spring-cloud-config') {}
+project(':spring-redis') {}
