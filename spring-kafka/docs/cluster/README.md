@@ -1,5 +1,9 @@
 # Kafka 3-node cluster setup
 
+![architecture](kafka-cluster.svg)
+
+![message-flow](kafka-cluster-topics.svg)
+
 ## Start zookeeper cluster
 ```
 bin/zookeeper-server-start.sh config/zookeeper1.properties
