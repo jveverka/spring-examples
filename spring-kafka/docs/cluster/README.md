@@ -27,3 +27,4 @@ rm -rf /tmp/kafka-logs-*
 ```
 
 * [Blog](https://medium.com/@kiranps11/kafka-and-zookeeper-multinode-cluster-setup-3511aef4a505)
+* [Blog](https://blog.newrelic.com/engineering/kafka-best-practices/)
