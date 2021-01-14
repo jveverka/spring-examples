@@ -17,7 +17,9 @@ import org.springframework.util.concurrent.ListenableFuture;
 public class EventConsumerImpl {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventConsumerImpl.class);
-    private static final String TOPIC = "sync-prod-con-responses";
+
+    private static final String REQUEST_TOPIC  = "sync-prod-con-requests";
+    private static final String RESPONSE_TOPIC = "sync-prod-con-responses";
 
     private final KafkaTemplate<String, EventWrapper<? extends AsyncEvent>> kafkaTemplate;
 
@@ -25,7 +27,7 @@ public class EventConsumerImpl {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    @KafkaListener(topics = "sync-prod-con-requests")
+    @KafkaListener(topics = REQUEST_TOPIC)
     public void consume(EventWrapper<? extends AsyncEvent> message) {
         LOGGER.info("#### Consumed message -> {}", message.getType());
         if (message.getType().equals(TxMessageAsyncEvent.class)) {
@@ -41,7 +43,7 @@ public class EventConsumerImpl {
         try {
             String messageKey = message.getId();
             LOGGER.info("#### Producing message: {} {}", message.getId(), message.getMessage());
-            ListenableFuture<SendResult<String, EventWrapper<? extends AsyncEvent>>> send = this.kafkaTemplate.send(TOPIC, messageKey, new EventWrapper<>(message));
+            ListenableFuture<SendResult<String, EventWrapper<? extends AsyncEvent>>> send = this.kafkaTemplate.send(RESPONSE_TOPIC, messageKey, new EventWrapper<>(message));
             send.get();
         } catch (Exception e) {
             throw new EventPublishException("Kafka publish DataMessage exception", e);
