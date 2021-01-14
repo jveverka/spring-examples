@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: itx.examples.spring.kafka.events.serializer.DataMessageSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: the-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: itx.examples.spring.kafka.events.deserializer.DataMessageDeserializer

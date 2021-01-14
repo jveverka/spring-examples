@@ -33,7 +33,7 @@ public class DataController {
 
     @PostMapping("/send-message")
     public ResponseEntity<Void> sendMessage(@RequestBody MessageRequest message) {
-        DataMessageAsyncEvent dataMessageEvent = new DataMessageAsyncEvent(UUID.randomUUID().toString(), message.getMessage());
+        DataMessageAsyncEvent dataMessageEvent = new DataMessageAsyncEvent(message.getId(), message.getMessage());
         messageProducer.sendMessage(new EventWrapper<>(dataMessageEvent));
         return ResponseEntity.ok().build();
     }
@@ -41,12 +41,12 @@ public class DataController {
     @PostMapping("/send-message-and-get-response")
     public ResponseEntity<MessageReply> sendMessageAndGetResponse(@RequestBody MessageRequest message) throws ExecutionException, InterruptedException {
         long timestamp = System.nanoTime();
-        DataMessageAsyncEvent dataMessageEvent = new DataMessageAsyncEvent(UUID.randomUUID().toString(), message.getMessage());
+        DataMessageAsyncEvent dataMessageEvent = new DataMessageAsyncEvent(message.getId(), message.getMessage());
         Future<DataMessageAsyncEvent> future = messageConsumer.getFuture(dataMessageEvent.getId());
         messageProducer.sendMessage(new EventWrapper<>(dataMessageEvent));
         DataMessageAsyncEvent reply = future.get();
         float duration = (System.nanoTime() - timestamp)/(1_000_000F);
-        return ResponseEntity.ok(new MessageReply(reply.getMessage(), duration));
+        return ResponseEntity.ok(new MessageReply(reply.getId(), reply.getMessage(), duration));
     }
 
 }

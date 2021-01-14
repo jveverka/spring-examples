@@ -1,9 +1,9 @@
 package itx.examples.spring.kafka.service;
 
-import itx.examples.spring.kafka.events.DataMessageAsyncEvent;
+import itx.examples.spring.kafka.events.TxMessageAsyncEvent;
 
 public interface EventProducer {
 
-    void sendMessage(DataMessageAsyncEvent message) throws EventPublishException;
+    void sendMessage(TxMessageAsyncEvent message) throws EventPublishException;
 
 }
