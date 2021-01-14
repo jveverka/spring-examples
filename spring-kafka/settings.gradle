@@ -1,5 +1,6 @@
+include "kafka-common"
 include "kafka-simple"
 include "kafka-producer"
 include "kafka-consumer"
-include "kafka-common"
-
+include "kafka-sync-producer"
+include "kafka-sync-consumer"

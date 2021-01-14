@@ -7,8 +7,12 @@ subprojects {
   
     repositories {
         mavenCentral()
+        mavenLocal()
     }
 
+}
+
+project(':kafka-common') {
 }
 
 project(':kafka-consumer') {
@@ -29,6 +33,14 @@ project(':kafka-simple') {
     }
 }
 
+project(':kafka-sync-producer') {
+    dependencies {
+        implementation project(':kafka-common')
+    }
+}
 
-project(':kafka-common') {
+project(':kafka-sync-consumer') {
+    dependencies {
+        implementation project(':kafka-common')
+    }
 }

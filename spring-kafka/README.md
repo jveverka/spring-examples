@@ -3,7 +3,7 @@
 * [__kafka-simple__](kafka-simple) - request-response simple demo.
 * [__kafka-producer__](kafka-producer) - app producing messages.
 * [__kafka-consumer__](kafka-consumer) - app consuming messages.
-* [__producer-consumer-demo__](docs/Producer-Consumer-Demo.md)
+* [__sync-producer-consumer-demo__](docs/Sync-Producer-Consumer-Demo.md)
 
 ![architecture](docs/kafka-demo.svg)
 
