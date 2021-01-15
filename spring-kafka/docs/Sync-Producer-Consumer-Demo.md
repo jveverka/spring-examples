@@ -20,6 +20,7 @@ java -jar build/libs/kafka-sync-consumer-1.0.0-SNAPSHOT.jar
 ```
 
 ## Cluster deployment
+![kafka-sync-demo-cluster](kafka-sync-demo-cluster.svg)
 
 ## REST APIs
 ### Send Message
