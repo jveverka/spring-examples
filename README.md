@@ -3,7 +3,7 @@
 [![Gradle](https://img.shields.io/badge/gradle-v6.5-blue)](https://img.shields.io/badge/gradle-v6.5-blue)
 ![Build and Test](https://github.com/jveverka/spring-examples/workflows/Build%20and%20Test/badge.svg)
 
-# Spring-Boot demos
+# Spring-Boot examples
 This project contains various not-so simple [spring-boot](https://spring.io/projects/spring-boot) demos.
 
 ### Environment setup
