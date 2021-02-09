@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ContextConfiguration(initializers = RedisAppTests.Initializer.class)
-public class RedisAppTests {
+class RedisAppTests {
 
     protected static final int DOCKER_EXPOSED_REDIS_PORT = 6379;
     private static final String REDIS_DOCKER_IMAGE = "redis:6-alpine";
@@ -40,7 +40,7 @@ public class RedisAppTests {
 
     @Test
     @Order(1)
-    public void testEmptyRepo() {
+    void testEmptyRepo() {
         ResponseEntity<MessageData[]> responseEntity = restTemplate.getForEntity("/services/data/messages", MessageData[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(0, responseEntity.getBody().length);
@@ -48,7 +48,7 @@ public class RedisAppTests {
 
     @Test
     @Order(2)
-    public void createMessages() {
+    void createMessages() {
         ResponseEntity<MessageData> responseEntity = restTemplate.postForEntity("/services/data/messages/" + "hi-message", null, MessageData.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
@@ -63,7 +63,7 @@ public class RedisAppTests {
 
     @Test
     @Order(3)
-    public void getMessage() {
+    void getMessage() {
         ResponseEntity<MessageData> responseEntity = restTemplate.getForEntity("/services/data/messages/" + messageId, MessageData.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody().getId());
@@ -72,7 +72,7 @@ public class RedisAppTests {
 
     @Test
     @Order(4)
-    public void deleteMessage() {
+    void deleteMessage() {
         restTemplate.delete("/services/data/messages/" + messageId);
         ResponseEntity<MessageData[]> responsesEntity = restTemplate.getForEntity("/services/data/messages", MessageData[].class);
         assertEquals(HttpStatus.OK, responsesEntity.getStatusCode());
@@ -80,22 +80,16 @@ public class RedisAppTests {
     }
 
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-
         private final Logger LOGGER = LoggerFactory.getLogger(RedisAppTests.class);
-
         static GenericContainer<?> redisContainer = new GenericContainer<>(REDIS_DOCKER_IMAGE)
                 .withExposedPorts(DOCKER_EXPOSED_REDIS_PORT)
                 .withReuse(true);
-
         @Override
         public void initialize(@NonNull ConfigurableApplicationContext context) {
-
             redisContainer.start();
             Assertions.assertTrue(redisContainer.isRunning());
             RedisAppTests.redisContainer = redisContainer;
-
             LOGGER.info("REDIS     : {}:{}", redisContainer.getContainerIpAddress(), redisContainer.getMappedPort(DOCKER_EXPOSED_REDIS_PORT));
-
             TestPropertyValues.of(
                     "spring.redis.host=" + redisContainer.getContainerIpAddress(),
                     "spring.redis.port=" + redisContainer.getMappedPort(DOCKER_EXPOSED_REDIS_PORT)

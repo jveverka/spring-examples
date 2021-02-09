@@ -10,8 +10,6 @@ public interface UserService {
 
     Collection<UserEntity> getAll();
 
-    void updateUser(String id, String name, Boolean enabled);
-
     void deleteUser(String id);
 
 }

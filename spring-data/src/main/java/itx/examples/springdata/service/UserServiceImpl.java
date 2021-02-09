@@ -46,12 +46,6 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void updateUser(String id, String name, Boolean enabled) {
-
-    }
-
-    @Transactional
-    @Override
     public void deleteUser(String id) {
         UserEntity userEntity = new UserEntity();
         userEntity.setId(id);

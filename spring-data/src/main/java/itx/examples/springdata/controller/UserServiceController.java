@@ -36,7 +36,7 @@ public class UserServiceController {
     @GetMapping("/users")
     public ResponseEntity<Collection<UserData>> getAll() {
         Collection<UserEntity> entities = userService.getAll();
-        Collection<UserData> users = entities.stream().map(u->transform(u)).collect(Collectors.toList());
+        Collection<UserData> users = entities.stream().map(UserServiceController::transform).collect(Collectors.toList());
         return ResponseEntity.ok(users);
     }
 

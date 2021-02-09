@@ -31,9 +31,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = DataAppTests.Initializer.class)
-public class DataAppTests {
+class DataAppTests {
 
     private static UserId fistUserId;
+    private static UserId secondUserId;
 
     @LocalServerPort
     int port;
@@ -43,17 +44,17 @@ public class DataAppTests {
 
     @Test
     @Order(1)
-    public void getUsers() {
-        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/services/users", UserData[].class);
+    void getUsers() {
+        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity("/services/users", UserData[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(0, responseEntity.getBody().length);
     }
 
     @Test
     @Order(2)
-    public void createFirstUser() {
+    void createFirstUser() {
         CreateUserRequest request = new CreateUserRequest("user-name-01", "user01@email.com");
-        ResponseEntity<UserId> responseEntity = restTemplate.postForEntity("http://localhost:" + port + "/services/users", request, UserId.class);
+        ResponseEntity<UserId> responseEntity = restTemplate.postForEntity("/services/users", request, UserId.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         fistUserId = responseEntity.getBody();
         assertNotNull(fistUserId);
@@ -61,34 +62,47 @@ public class DataAppTests {
 
     @Test
     @Order(3)
-    public void checkUsers() {
-        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/services/users", UserData[].class);
+    void checkUsers() {
+        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity("/services/users", UserData[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(1, responseEntity.getBody().length);
     }
 
     @Test
     @Order(4)
-    public void deleteFirstUser() {
-        restTemplate.delete("http://localhost:" + port + "/services/users/" + fistUserId.getId());
+    void createSecondUser() {
+        CreateUserRequest request = new CreateUserRequest("user-name-02", "user02@email.com");
+        ResponseEntity<UserId> responseEntity = restTemplate.postForEntity("/services/users", request, UserId.class);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        secondUserId = responseEntity.getBody();
+        assertNotNull(secondUserId);
     }
 
     @Test
     @Order(5)
-    public void checkUsersDeleted() {
-        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity("http://localhost:" + port + "/services/users", UserData[].class);
+    void deleteFirstUser() {
+        restTemplate.delete("/services/users/" + fistUserId.getId());
+        //check if user deleted
+        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity( "/services/users", UserData[].class);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(1, responseEntity.getBody().length);
+    }
+
+    @Test
+    @Order(6)
+    void deleteSecondUser() {
+        restTemplate.delete("/services/users/" + secondUserId.getId());
+        //check if user deleted
+        ResponseEntity<UserData[]> responseEntity = restTemplate.getForEntity( "/services/users", UserData[].class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(0, responseEntity.getBody().length);
     }
 
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-
         static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:12.3");
-
         private static void startContainers() {
             Startables.deepStart(Stream.of(postgres)).join();
         }
-
         private static Map<String, String> createContextConfiguration() {
             return Map.of(
                     "spring.datasource.url", postgres.getJdbcUrl(),
@@ -96,7 +110,6 @@ public class DataAppTests {
                     "spring.datasource.password", postgres.getPassword()
             );
         }
-
         @Override
         public void initialize(ConfigurableApplicationContext applicationContext) {
             startContainers();
@@ -104,7 +117,6 @@ public class DataAppTests {
             MapPropertySource testContainers = new MapPropertySource("testcontainers", (Map) createContextConfiguration());
             environment.getPropertySources().addFirst(testContainers);
         }
-
     }
 
 }
