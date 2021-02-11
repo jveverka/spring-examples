@@ -1,0 +1,29 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  datasource:
+    platform: h2
+    initialization-mode: always
+    #schema: classpath:script/sql/schema.sql
+    data: classpath:script/sql/data.sql
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    database: H2
+    show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+logging:
+  level:
+    root: info
