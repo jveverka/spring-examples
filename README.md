@@ -20,18 +20,18 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 ```
 
 ### Examples
+* [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
+* [__spring websocket__](spring-websockets) - simple websocket demo.
+* [__spring demo__](spring-demo) - basic springboot application, actuator, buildinfo, swagger.
+* [__spring proxy__](spring-proxy) - simple springboot http proxy demo.
+* [__spring API first__](spring-api-first) - OpenAPI 3.0 API first application design.
+* [__spring webflux__](spring-webflux) - Spring Webflux example.
 * [__spring dependency injection__](spring-di) - simple dependency injection demo.
 * [__spring jcasbin__](spring-jcasbin) - simple integration example of jcasbin in spring app.
 * [__spring security__](spring-security) - cookie session tracking and web security.
 * [__spring security-jwt__](spring-security-jwt) - JWT based web security.
-* [__spring demo__](spring-demo) - basic springboot application, actuator, buildinfo, swagger.
-* [__spring proxy__](spring-proxy) - simple springboot http proxy demo.
 * [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
-* [__spring websocket__](spring-websockets) - simple websocket demo.
 * [__spring bank__](spring-bank) - simple transactional web application.
-* [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
-* [__spring API first__](spring-api-first) - OpenAPI 3.0 API first application design. 
-* [__spring webflux__](spring-webflux) - Spring Webflux example.
 
 ### Topics
 * [__JUnit5__](https://github.com/junit-team/junit5/) - [all projects]()
