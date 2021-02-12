@@ -4,7 +4,7 @@
 ![Build and Test](https://github.com/jveverka/spring-examples/workflows/Build%20and%20Test/badge.svg)
 
 # Spring-Boot examples
-This project contains various not-so simple [spring-boot](https://spring.io/projects/spring-boot) demos.
+This project contains various simple or not-so simple [Spring Boot](https://spring.io/projects/spring-boot) examples.
 
 ### Environment setup
 Minimal requirements: Please make sure following software is installed on your PC.
