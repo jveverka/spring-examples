@@ -1,7 +1,7 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.0'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id "org.openapi.generator" version "4.3.1"
+    id 'org.springframework.boot' version '2.6.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "org.openapi.generator" version "5.3.1"
     id 'java'
 }
 
@@ -18,9 +18,7 @@ dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
     implementation 'io.springfox:springfox-swagger2:2.9.2'
     implementation 'org.openapitools:jackson-databind-nullable:0.2.1'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 // OpenAPI generator settings
@@ -44,9 +42,13 @@ sourceSets {
     }
 }
 
+compileJava {
+    dependsOn(':openApiGenerate')
+}
+
 // Use custom main class
 springBoot {
-    mainClassName = 'itx.examples.apifirst.ApiFirstApp'
+    mainClass = 'itx.examples.apifirst.ApiFirstApp'
 }
 
 test {
