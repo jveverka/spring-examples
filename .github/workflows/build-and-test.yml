@@ -3,9 +3,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ java-17 ]
   pull_request:
-    branches: [ master ]
+    branches: [ java-17 ]
 
 jobs:
   build:
