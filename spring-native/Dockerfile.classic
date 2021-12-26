@@ -1,0 +1,5 @@
+ARG ARCH="amd64"
+FROM ${ARCH}/amazoncorretto:17
+
+COPY build/libs/spring-native-0.0.1-SNAPSHOT.jar /spring-native.jar
+ENTRYPOINT [ "java", "-Xms32m", "-Xms128M", "-jar", "/spring-native.jar" ]

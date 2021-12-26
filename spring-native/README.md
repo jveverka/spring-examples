@@ -10,23 +10,49 @@ sdk install gradle 7.3.3
 gu install native-image
 ```
 
-### Build
+### Build Classic Fat jar
+* Build springboot fat jar.
 ```
-gradle clean build test
+gradle clean build test jar
 ```
+* Build docker with springboot fat jar.
+```
+export VERSION=0.0.1-SNAPSHOT
+export ARCH=arm64v8
+export ARCH=amd64
+docker build -t jurajveverka/spring-native-classic:${VERSION}-${ARCH} \
+  --build-arg ARCH=${ARCH} \
+  -f Dockerfile.classic .
+  
+docker push jurajveverka/spring-native-classic:${VERSION}-${ARCH}
+docker run -p 8080:8080 jurajveverka/spring-native-classic:${VERSION}-${ARCH}
+``` 
 
 ### Lightweight Container with Cloud Native Buildpacks
 ```
-gradle bootBuildImage
-docker run --rm -p 8080:8080 springnative:0.0.1-SNAPSHOT
+gradle clean build test bootBuildImage
+docker run --rm -p 8080:8080 spring-native:0.0.1-SNAPSHOT
 ```
 
 ### Executable with Native Build Tools
+* Build native binary.
 ```
 sdk use java 21.3.0.r17-grl
 sdk use gradle 7.3.3
-gradle nativeBuild
-./build/native/nativeCompile/springnative
+gradle clean build test nativeCompile
+./build/native/nativeCompile/spring-native
+```
+* Build docker with native binary.
+```
+export VERSION=0.0.1-SNAPSHOT
+export ARCH=arm64v8
+export ARCH=amd64
+docker build -t jurajveverka/spring-native-native:${VERSION}-${ARCH} \
+  --build-arg ARCH=${ARCH} \
+  -f Dockerfile.native .
+  
+docker push jurajveverka/spring-native-native:${VERSION}-${ARCH}
+docker run -p 8080:8080 jurajveverka/spring-native-native:${VERSION}-${ARCH}
 ```
 
 #### References
