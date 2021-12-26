@@ -20,6 +20,7 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 ```
 
 ### Examples
+* [__spring native__](spring-native) - Spring native AOT demo.
 * [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
 * [__spring websocket__](spring-websockets) - simple websocket demo.
 * [__spring demo__](spring-demo) - basic springboot application, actuator, buildinfo, swagger.
