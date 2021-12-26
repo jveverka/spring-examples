@@ -12,7 +12,7 @@ services:
     image: spring-proxy:1.0.0-SNAPSHOT
     build:
       context: .
-      dockerfile: Dockerfile.x86_64
+      dockerfile: Dockerfile
     network_mode: "host"
     ports:
       - "8088:8088"

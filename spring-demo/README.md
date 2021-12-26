@@ -42,7 +42,9 @@ java -jar build/libs/spring-demo-1.0.0-SNAPSHOT.jar
 Docker files for x86_64 and ARM armv7l/aarch64 architectures are available. 
 This example shows how to build docker image for x86_64 architecture.
 ```
-docker build -t spring-demo-x86:1.0.0-SNAPSHOT --file Dockerfile.x86_64 .
+export ARCH=amd64
+#export ARCH=arm64v8
+docker build -t spring-demo-x86:1.0.0-SNAPSHOT --file Dockerfile .
 docker image list
 docker save --output="build/spring-demo-x86:1.0.0-SNAPSHOT.tar" spring-demo-x86:1.0.0-SNAPSHOT
 docker image rm -f <imageid>

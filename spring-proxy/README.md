@@ -16,10 +16,12 @@ java -jar build/libs/spring-proxy-1.0.0-SNAPSHOT.jar --spring.config.location=fi
 ```
 
 ### Build Docker Image
-Docker files for x86_64 and ARM armv7l/aarch64 architectures are available. 
+Docker files for x86_64 and ARM aarch64 architectures are available. 
 This example shows how to build docker image for x86_64 architecture.
 ```
-docker build -t spring-proxy-x86:1.0.0-SNAPSHOT --file Dockerfile.x86_64 .
+export ARCH=amd64
+#export ARCH=arm64v8
+docker build -t spring-proxy-x86:1.0.0-SNAPSHOT --file Dockerfile .
 docker image list
 docker save --output="build/spring-proxy-x86:1.0.0-SNAPSHOT.tar" spring-proxy-x86:1.0.0-SNAPSHOT
 docker image rm -f <imageid>

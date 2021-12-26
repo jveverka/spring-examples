@@ -1,5 +1,0 @@
-# Tested on AWS (m6g.large) ARM Graviton2 (Neoverse-N1), Architecture: aarch64
-# Tested on AWS (a1.large)  ARM (Cortex-A72), Architecture: aarch64
-FROM arm64v8/openjdk:11.0.8-jre-slim-buster
-COPY build/libs/spring-demo-1.0.0-SNAPSHOT.jar /spring-demo-1.0.0-SNAPSHOT.jar
-ENTRYPOINT ["java", "-Xms32m", "-Xms128M", "-jar","/spring-demo-1.0.0-SNAPSHOT.jar"]

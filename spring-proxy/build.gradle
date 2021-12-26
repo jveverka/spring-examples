@@ -6,7 +6,7 @@ plugins {
 
 group = 'itx.examples.springboot.proxy'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
 	mavenCentral()
