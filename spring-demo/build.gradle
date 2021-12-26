@@ -1,7 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.4.0'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-	id 'com.palantir.git-version' version '0.12.3'
 	id 'java'
 }
 
@@ -27,14 +26,6 @@ dependencies {
 }
 
 springBoot {
-	buildInfo() {
-		properties {
-			additional = [
-					'gitfullhash'  : versionDetails? versionDetails().gitHashFull : "NA",
-					'gitbranchname': versionDetails? versionDetails().branchName : "NA"
-			]
-		}
-	}
 }
 
 test {

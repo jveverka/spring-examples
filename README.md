@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Java11](https://img.shields.io/badge/java-11-blue)](https://img.shields.io/badge/java-11-blue)
-[![Gradle](https://img.shields.io/badge/gradle-v6.5-blue)](https://img.shields.io/badge/gradle-v6.5-blue)
+[![Gradle](https://img.shields.io/badge/gradle-v7.3-blue)](https://img.shields.io/badge/gradle-v7.3-blue)
 ![Build and Test](https://github.com/jveverka/spring-examples/workflows/Build%20and%20Test/badge.svg)
 
 # Spring-Boot examples
@@ -9,7 +9,7 @@ This project contains various simple or not-so simple [Spring Boot](https://spri
 ### Environment setup
 Minimal requirements: Please make sure following software is installed on your PC.
 * [OpenJDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
-* [Gradle 6.5](https://gradle.org/install/) or later
+* [Gradle 7.3](https://gradle.org/install/) or later
 
 Please check [full system requirements](docs/system-requirements.md) for more details. 
 
