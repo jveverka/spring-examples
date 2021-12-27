@@ -1,12 +1,13 @@
 # Spring Native Demo
-This is simple demo of [Spring Native](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/) microservice building approach.
+This is simple demo of [Spring Native](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/) subsystem, 
+compiling Spring applications to native executables using the [GraalVM native-image](https://www.graalvm.org/reference-manual/native-image/) compiler.
 
 | Arch.   | Spring  | CPU            | Compilation Time | Build Size | Docker Size | App Start | RSS Memory |
 |---------|---------|----------------|------------------|------------|-------------|-----------|------------|
-| amd64   | classic | AMD 5950X      | 7s               | 17M        | 218.98 MB   | 0.84 s    |            |
-| amd64   | native  | AMD 5950X      | 48s              | 68M        | 68.35 MB    | 0.032 s   |            |
-| arm64v8 | classic | Raspberry PI 4 | NA *             | 17M        | NA          | 10.997 s  |            |
-| arm64v8 | native  | Raspberry PI 4 | NA *             | 67M        | NA          | 0.161 s   |            | 
+| amd64   | classic | AMD 5950X      | 7s               | 17M        | 218.98 MB   | 0.84 s    | 484.332 MB |
+| amd64   | native  | AMD 5950X      | 48s              | 68M        | 68.35 MB    | 0.032 s   | 49.824 MB  |
+| arm64v8 | classic | Raspberry PI 4 | NA *             | 17M        | NA          | 10.997 s  | 169.416 MB |
+| arm64v8 | native  | Raspberry PI 4 | NA *             | 67M        | NA          | 0.161 s   | 71.820 MB  | 
 
 * __Compilation Time__ - in case of classic spring build, the compilation time is to build classic springboot fat jar.
 * __Compilation Time *__ - graal native compilation requires a LOT OF memory, at least 20G for server is recommended. 
@@ -15,7 +16,7 @@ This is simple demo of [Spring Native](https://docs.spring.io/spring-native/docs
   In case of native build the resulting binary contains optimized java library stack and 'Substrate VM' as [described here](https://www.graalvm.org/reference-manual/native-image/).  
 * __App Start__ - start time measured by SpringBoot framework printed in the log file.
 
-#### Demo REST endpoints
+### Demo REST endpoints
 * GET Message 
   ```
   curl --request GET --url http://localhost:8080/api/v1/data/message
