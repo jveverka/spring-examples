@@ -1,5 +1,5 @@
 ARG ARCH="amd64"
-FROM ${ARCH}/alpine:3.15
+FROM ${ARCH}/ubuntu:20.04
 
 COPY build/native/nativeCompile/spring-native /spring-native
 RUN chmod 755 /spring-native
