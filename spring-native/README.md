@@ -1,6 +1,37 @@
 # Spring Native Demo
+This is simple demo of [Spring Native](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/) microservice building approach.
 
+| Arch.   | Spring  | CPU            | Compilation Time | Build Size | Docker Size | App Start | RSS Memory |
+|---------|---------|----------------|------------------|------------|-------------|-----------|------------|
+| amd64   | classic | AMD 5950X      | 7s               | 17M        | 218.98 MB   | 0.84 s    |            |
+| amd64   | native  | AMD 5950X      | 48s              | 68M        | 68.35 MB    | 0.032 s   |            |
+| arm64v8 | classic | Raspberry PI 4 | NA *             | 17M        | NA          | 10.997 s  |            |
+| arm64v8 | native  | Raspberry PI 4 | NA *             | 67M        | NA          | 0.161 s   |            | 
+
+* __Compilation Time__ - in case of classic spring build, the compilation time is to build classic springboot fat jar.
+* __Compilation Time *__ - graal native compilation requires a LOT OF memory, at least 20G for server is recommended. 
+  It is possible to [emulate ARMv64 VM on x86_64 hardware](https://github.com/jveverka/guildelines-and-procedures/tree/master/qemu) in case memory on ARMv64 system is not enough.
+* __Build Size__ - in case of classic build the build size is size of fat jar which does not include JVM and JVM libraries.
+  In case of native build the resulting binary contains optimized java library stack and 'Substrate VM' as [described here](https://www.graalvm.org/reference-manual/native-image/).  
+* __App Start__ - start time measured by SpringBoot framework printed in the log file.
+
+#### Demo REST endpoints
+* GET Message 
+  ```
+  curl --request GET --url http://localhost:8080/api/v1/data/message
+  ```
+* POST Message 
+  ```
+  curl --request POST \
+  --url http://localhost:8080/api/v1/data/message \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "message": "Hi !"
+  }'
+  ```
+  
 ## Install Graal VM and tools
+This procedure is valid for Ubuntu 20.04 amd64 and arm64v8 build servers.
 ```
 sudo apt install zip unzip curl
 sudo apt install build-essential libz-dev zlib1g-dev
@@ -11,7 +42,7 @@ gu install native-image
 ```
 
 ### Build Classic Fat jar
-* Build springboot fat jar.
+* Build classic springboot fat jar.
 ```
 gradle clean build test jar
 ```
