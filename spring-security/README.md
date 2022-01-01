@@ -44,5 +44,5 @@ GET protected data for different user roles:
 ### Build and run
 ```
 gradle clean build test
-java -jar build/libs/spring-security-0.0.1-SNAPSHOT.jar 
+java -jar build/libs/spring-security-1.0.0-SNAPSHOT.jar 
 ```

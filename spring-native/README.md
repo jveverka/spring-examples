@@ -22,6 +22,8 @@ compiling Spring applications to native executables using the [GraalVM native-im
 
 ![app-startup](docs/startup-compare.jpg)
 
+Check also [this](https://github.com/jveverka/java-17-examples/tree/master/examples/proxy-server) GraalVM native-image plain java application demo.
+
 ### Demo REST endpoints
 * GET Message 
   ```

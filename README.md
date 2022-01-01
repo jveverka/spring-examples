@@ -20,7 +20,7 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 ```
 
 ### Examples
-* [__spring native__](spring-native) - Spring native AOT demo.
+* [__spring native__](spring-native) - Spring native & AOT demo.
 * [__spring data__](spring-data) - JPA / Hibernate / spring data and Flyway demo.
 * [__spring websocket__](spring-websockets) - simple websocket demo.
 * [__spring demo__](spring-demo) - basic springboot application, actuator, buildinfo, swagger.
@@ -35,9 +35,11 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 * [__spring bank__](spring-bank) - simple transactional web application.
 
 ### Topics
+* [__Spring Native__](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/) - [Spring native case study.](spring-native)
+* [__Reactive Spring__](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html) - [Reactive Spring case study.](spring-webflux)
 * [__JUnit5__](https://github.com/junit-team/junit5/) - [all projects]()
-* __Security__ - [__spring security__](spring-security), [__spring jcasbin__](spring-jcasbin), [__spring security-jwt__](spring-security-jwt)
-* __Web/Http__ - [__spring proxy__](spring-proxy), [__spring fileserver__](spring-fileserver), [__spring websocket__](spring-websockets), [__spring API first__](spring-api-first)
+* __Security__ - [__spring security__](spring-security), [__spring jcasbin__](spring-jcasbin), [__spring security-jwt__](spring-security-jwt), [__spring-webflux__](spring-webflux)
+* __Web/Http__ - [__spring proxy__](spring-proxy), [__spring fileserver__](spring-fileserver), [__spring websocket__](spring-websockets), [__spring API first__](spring-api-first), [__spring-webflux__](spring-webflux)
 * [__Spring Data__](https://spring.io/projects/spring-data) - [__spring data__](spring-data), [__spring bank__](spring-bank)
 * __Integrations__ - [__spring proxy__](spring-proxy), [__spring API first__](spring-api-first)
 
