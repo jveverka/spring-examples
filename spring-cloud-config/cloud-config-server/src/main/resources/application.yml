@@ -6,8 +6,10 @@ spring:
     config:
       server:
         git:
-          uri: file://${user.home}/tmp/config-data
+          uri: file://${user.home}/tmp/test/config-data
+          default-label: master
+          force-pull: true
 
 logging:
   level:
-    root: DEBUG
+    root: INFO
