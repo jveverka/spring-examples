@@ -2,14 +2,19 @@ server:
   port: 8888
 
 spring:
+  config:
+    name: configserver
   cloud:
     config:
       server:
         git:
           uri: file://${user.home}/tmp/test/config-data
-          default-label: master
+          #uri: https://github.com/spring-cloud-samples/config-repo
+          default-label: main
+          basedir: build/config
           force-pull: true
 
 logging:
   level:
     root: INFO
+    org.springframework.cloud: 'DEBUG'

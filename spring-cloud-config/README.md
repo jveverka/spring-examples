@@ -2,6 +2,7 @@
 
 * GET http://localhost:8888/cloud-config-client.yml
 * GET http://localhost:8888/cloud-config-client/default
+* GET http://localhost:8888/application/default/main/nginx-conf-default/nginx.json
 
 ### Git repo structure
 ```
