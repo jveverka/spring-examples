@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'itx.examples.springboot'
+version = '1.0.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation("com.squareup.okhttp3:okhttp:4.9.3")
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+}
+
+springBoot {
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}

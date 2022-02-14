@@ -35,6 +35,9 @@ project(":spring-mongo").projectDir = new File("spring-mongo")
 include "spring-redis"
 project(":spring-redis").projectDir = new File("spring-redis")
 
+include "spring-mockwebserver"
+project(":spring-mockwebserver").projectDir = new File("spring-mockwebserver")
+
 include "spring-bank"
 include "bank-common"
 include "bank-client"
