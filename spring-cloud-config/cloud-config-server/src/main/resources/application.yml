@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: file://${user.home}/tmp/test/config-data
+          uri: file://${user.home}/tmp/config-data
           #uri: https://github.com/spring-cloud-samples/config-repo
           default-label: main
           basedir: build/config
