@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class RedisAppTests {
 
     protected static final int DOCKER_EXPOSED_REDIS_PORT = 6379;
-    private static final String REDIS_DOCKER_IMAGE = "redis:6-alpine";
+    private static final String REDIS_DOCKER_IMAGE = "redis:6";
     protected static GenericContainer<?> redisContainer;
     private static String messageId;
 

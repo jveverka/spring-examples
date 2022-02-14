@@ -9,4 +9,5 @@
 * H2 database for testing - the old way :)
 
 ### References
+* [Testcontainers](https://www.testcontainers.org/)
 * [Postgres in Docker](https://hub.docker.com/_/postgres) 
