@@ -99,7 +99,7 @@ class DataAppTests {
     }
 
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
-        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:12.3");
+        static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:12");
         private static void startContainers() {
             Startables.deepStart(Stream.of(postgres)).join();
         }
