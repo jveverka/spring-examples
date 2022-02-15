@@ -32,6 +32,7 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 * [__spring security__](spring-security) - cookie session tracking and web security.
 * [__spring security-jwt__](spring-security-jwt) - JWT based web security.
 * [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
+* [__spring_mockwebserver__](spring-mockwebserver) - simple http proxy service calling another service.  
 * [__spring bank__](spring-bank) - simple transactional web application.
 
 ### Topics
