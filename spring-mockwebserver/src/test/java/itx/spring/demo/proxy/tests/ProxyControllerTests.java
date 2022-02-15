@@ -6,9 +6,12 @@ import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
@@ -18,6 +21,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ProxyControllerTests {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProxyControllerTests.class);
+
+    @LocalServerPort
+    int port;
 
     @Autowired
     ProxyController proxyController;
@@ -36,6 +44,7 @@ class ProxyControllerTests {
 
     @Test
     void testProxyGet() {
+        LOGGER.info("ProxyControllerTests:: server: {} mockServer: {}", restTemplate.getRootUri(), server.url(""));
         String baseUrl = server.url("/data").toString();
         proxyController.setBaseUrl(baseUrl);
 
@@ -51,6 +60,5 @@ class ProxyControllerTests {
             server.shutdown();
         }
     }
-
 
 }
