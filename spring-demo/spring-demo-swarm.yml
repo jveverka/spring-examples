@@ -3,7 +3,7 @@ version: '3.6'
 services:
 
   spring-demo:
-    image: jurajveverka/spring-demo:1.0.0
+    image: jurajveverka/spring-demo:1.0.2
     ports:
       - 8088:8081
     deploy:

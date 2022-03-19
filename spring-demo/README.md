@@ -1,5 +1,7 @@
 # Simple Spring Boot demo
 This is simple spring-boot application demo. 
+[Spring Cloud Sleuth](https://spring.io/projects/spring-cloud-sleuth#overview)
+is enabled in this demo to improve log traceability.
 
 ### Rest Endpoints
 * __GET__ http://localhost:8081/data/build-info
@@ -43,7 +45,7 @@ Docker files for x86_64 and ARM aarch64 architectures are available.
 This example shows how to build docker image for x86_64 architecture.
 ```
 export ARCH=amd64
-export VERSION=1.0.0
+export VERSION=1.0.2
 #export ARCH=arm64v8
 docker build -t jurajveverka/spring-demo:${VERSION} .
 docker push jurajveverka/spring-demo:${VERSION}
