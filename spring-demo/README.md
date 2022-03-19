@@ -45,7 +45,7 @@ Docker files for x86_64 and ARM aarch64 architectures are available.
 This example shows how to build docker image for x86_64 architecture.
 ```
 export ARCH=amd64
-export VERSION=1.0.2
+export VERSION=1.0.3
 #export ARCH=arm64v8
 docker build -t jurajveverka/spring-demo:${VERSION} .
 docker push jurajveverka/spring-demo:${VERSION}
@@ -62,3 +62,8 @@ sudo docker stack deploy -c spring-demo-swarm.yml spring-demo
 sudo docker stack services spring-demo
 sudo docker stack rm spring-demo
 ```
+
+### LogBack configuration
+* [logback.xml](src/main/resources/logback.xml) - custom logger configuration.
+* [LogUtils](src/main/java/itx/examples/springboot/demo/logs/LogUtils.java) - how to log custom data.
+ 

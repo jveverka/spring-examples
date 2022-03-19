@@ -4,3 +4,7 @@ server:
 spring:
   application:
     name: spring-demo
+
+logging:
+  level:
+    root: INFO

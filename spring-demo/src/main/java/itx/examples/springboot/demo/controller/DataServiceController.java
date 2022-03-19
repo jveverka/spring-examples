@@ -10,6 +10,7 @@ import itx.examples.springboot.demo.dto.generic.GenericRequest;
 import itx.examples.springboot.demo.dto.generic.GenericResponse;
 import itx.examples.springboot.demo.dto.SystemInfo;
 import itx.examples.springboot.demo.dto.generic.SimpleDataPayload;
+import itx.examples.springboot.demo.logs.LogUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,23 +70,30 @@ public class DataServiceController {
 
     @GetMapping(path = "/info", produces = MediaType.APPLICATION_JSON_VALUE )
     public SystemInfo getSystemInfo() {
+        long startTime = System.nanoTime();
         LOG.info("getSystemInfo:");
-        return new SystemInfo(applicationConfig.getId(),  "spring-demo", "1.0.0", System.currentTimeMillis());
+        SystemInfo systemInfo = new SystemInfo(applicationConfig.getId(),  "spring-demo", "1.0.0", System.currentTimeMillis());
+        LogUtils.logHttpTraffic(LOG, startTime, "getSystemInfo executed.");
+        return systemInfo;
     }
 
     @PostMapping(path = "/message", consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<DataMessage> getDataMessage(@RequestBody DataMessage dataMessage) {
+        long startTime = System.nanoTime();
         LOG.info("getDataMessage: {}", dataMessage.getData());
         DataMessage responseMessage = new DataMessage(dataMessage.getData());
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        LogUtils.logHttpTraffic(LOG, startTime, "getDataMessage executed.");
         return new ResponseEntity<>(responseMessage, responseHeaders, HttpStatus.OK);
     }
 
     @GetMapping(path = "/echo/{message}", produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<DataMessage> getEcho(@PathVariable String message) {
+        long startTime = System.nanoTime();
         LOG.info("getEcho: {}", message);
         DataMessage responseMessage = new DataMessage(message);
+        LogUtils.logHttpTraffic(LOG, startTime, "getEcho executed.");
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
 

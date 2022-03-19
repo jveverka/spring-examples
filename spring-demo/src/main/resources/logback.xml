@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([${applicationName:-}]){yellow} %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(%X{exec_time}){red} %clr(%X{traceId}){blue} %clr(%X{spanId}){yellow} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+    <appender name="STDOUT_LOCAL" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc/>
+                <pattern>
+                    <pattern>
+                        {
+                           "timestamp": "%date{ISO8601}",
+                           "message":  "%message",
+                           "logger": "%logger",
+                           "thread": "%thread",
+                           "level": "%level",
+                           "appName": "${applicationName}",
+                           "execTime": "#asLong{%mdc{exec_time}}",
+                           "stacktrace": "%msg%rEx{full, org}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <logger name="itx.examples.springboot.demo" level="${logLevelApp}" />
+
+    <!--
+    <root level="${logLevelRoot}">
+        <if condition='property("profile").equalsIgnoreCase("cloud")'>
+            <then>
+                <appender-ref ref="STDOUT_JSON"/>
+            </then>
+            <else>
+                <appender-ref ref="STDOUT_LOCAL"/>
+            </else>
+        </if>
+    </root>
+    -->
+    <root level="${logLevelRoot}">
+        <appender-ref ref="STDOUT_JSON"/>
+        <!--<appender-ref ref="STDOUT_LOCAL"/>-->
+    </root>
+
+</configuration>

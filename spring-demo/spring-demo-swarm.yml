@@ -3,9 +3,11 @@ version: '3.6'
 services:
 
   spring-demo:
-    image: jurajveverka/spring-demo:1.0.2
+    image: jurajveverka/spring-demo:1.0.3
     ports:
       - 8088:8081
+    labels:
+      logformatting: json
     deploy:
       mode: global
       placement:
