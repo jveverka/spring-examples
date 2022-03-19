@@ -49,3 +49,14 @@ docker build -t jurajveverka/spring-demo:${VERSION} .
 docker push jurajveverka/spring-demo:${VERSION}
 docker run -p 8081:8081 jurajveverka/spring-demo:${VERSION}
 ```
+### Run with Docker
+```
+docker run -p 8081:8081 jurajveverka/spring-demo:${VERSION}
+```
+
+### Run with Docker Swarm
+```
+sudo docker stack deploy -c spring-demo-swarm.yml spring-demo
+sudo docker stack services spring-demo
+sudo docker stack rm spring-demo
+```

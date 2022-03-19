@@ -1,0 +1,20 @@
+version: '3.6'
+
+services:
+
+  spring-demo:
+    image: jurajveverka/spring-demo:1.0.0
+    ports:
+      - 8088:8081
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.labels.services == true
+    networks:
+      - application
+
+networks:
+  application:
+    external: true
+    name: app-network

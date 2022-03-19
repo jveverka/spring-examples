@@ -1,6 +1,5 @@
 package itx.examples.springboot.demo.dto;
 
-import java.time.LocalDate;
 
 public class BuildInfo {
 
