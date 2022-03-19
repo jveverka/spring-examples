@@ -14,12 +14,15 @@ import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.test.context.ContextConfiguration;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -77,6 +80,13 @@ class RedisAppTests {
         ResponseEntity<MessageData[]> responsesEntity = restTemplate.getForEntity("/services/data/messages", MessageData[].class);
         assertEquals(HttpStatus.OK, responsesEntity.getStatusCode());
         assertEquals(0, responsesEntity.getBody().length);
+    }
+
+    @Test
+    @Order(5)
+    void testOptions() {
+        Set<HttpMethod> httpMethods = restTemplate.optionsForAllow("/services/data/messages");
+        assertEquals(3, httpMethods.size());
     }
 
     public static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
