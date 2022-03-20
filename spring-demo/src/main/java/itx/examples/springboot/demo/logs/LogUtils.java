@@ -9,6 +9,9 @@ public final class LogUtils {
 
     public static final String EXEC_TIME_KEY = "exec_time";
 
+    private LogUtils() {
+    }
+
     public static void updateExecutionTime(Long execTime) {
         MDC.remove(EXEC_TIME_KEY);
         MDC.put(EXEC_TIME_KEY, nonNull(execTime) ? execTime.toString() : "NA" );
@@ -27,6 +30,14 @@ public final class LogUtils {
         updateExecutionTime(execTime);
         logger.info(message, arguments);
         clearExecutionTime();
+    }
+
+    public static String getTraceId() {
+        return MDC.get("traceId");
+    }
+
+    public static String getSpanId() {
+        return MDC.get("spanId");
     }
 
 }
