@@ -71,8 +71,9 @@ public class DataServiceController {
     @GetMapping(path = "/info", produces = MediaType.APPLICATION_JSON_VALUE )
     public SystemInfo getSystemInfo() {
         long startTime = System.nanoTime();
-        LOG.info("getSystemInfo:");
-        SystemInfo systemInfo = new SystemInfo(applicationConfig.getId(),  "spring-demo", "1.0.0", System.currentTimeMillis());
+        long uptime = System.currentTimeMillis() - applicationConfig.getStartTime();
+        LOG.info("getSystemInfo: appId={}, uptime={}", applicationConfig.getId(), uptime);
+        SystemInfo systemInfo = new SystemInfo(applicationConfig.getId(),  "spring-demo", "1.0.0", System.currentTimeMillis(), uptime);
         LogUtils.logHttpTraffic(LOG, startTime, "getSystemInfo executed.");
         return systemInfo;
     }

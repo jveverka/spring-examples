@@ -45,11 +45,12 @@ Docker files for x86_64 and ARM aarch64 architectures are available.
 This example shows how to build docker image for x86_64 architecture.
 ```
 export ARCH=amd64
-export VERSION=1.0.3
+export VERSION=1.0.4
 #export ARCH=arm64v8
 docker build -t jurajveverka/spring-demo:${VERSION} .
 docker push jurajveverka/spring-demo:${VERSION}
-docker run -p 8081:8081 jurajveverka/spring-demo:${VERSION}
+docker run -p 8081:8081 -d jurajveverka/spring-demo:${VERSION} -n spring-demo
+docker exec -ti spring-demo /bin/bash
 ```
 ### Run with Docker
 ```

@@ -51,8 +51,8 @@
     </root>
     -->
     <root level="${logLevelRoot}">
-        <appender-ref ref="STDOUT_JSON"/>
-        <!--<appender-ref ref="STDOUT_LOCAL"/>-->
+        <!--<appender-ref ref="STDOUT_JSON"/>-->
+        <appender-ref ref="STDOUT_LOCAL"/>
     </root>
 
 </configuration>

@@ -9,16 +9,19 @@ public class SystemInfo {
     private final String name;
     private final String version;
     private final long timestamp;
+    private final long uptime;
 
     @JsonCreator
     public SystemInfo(@JsonProperty("appId") String appId,
                       @JsonProperty("name") String name,
                       @JsonProperty("version") String version,
-                      @JsonProperty("timestamp") long timestamp) {
+                      @JsonProperty("timestamp") long timestamp,
+                      @JsonProperty("uptime") long uptime) {
         this.appId = appId;
         this.name = name;
         this.version = version;
         this.timestamp = timestamp;
+        this.uptime = uptime;
     }
 
     public String getAppId() {
@@ -36,5 +39,9 @@ public class SystemInfo {
     public long getTimestamp() {
         return timestamp;
     }
-    
+
+    public long getUptime() {
+        return uptime;
+    }
+
 }
