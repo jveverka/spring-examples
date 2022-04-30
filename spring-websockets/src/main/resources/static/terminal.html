@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="xterm.css" />
+    <script src="xterm.js"></script>
+</head>
+<body>
+<div id="terminal"></div>
+<script>
+    var socket = new WebSocket('ws://' + location.hostname + ':' + location.port + '/terminal');
+    var term = new Terminal();
+    term.open(document.getElementById('terminal'));
+    term.write('$ ');
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server: ', event.data);
+        term.write(event.data);
+    });
+</script>
+</body>
+</html>

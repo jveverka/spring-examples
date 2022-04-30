@@ -15,12 +15,19 @@ public class WSConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(getWSHandler(), "/messages")
-                .addInterceptors(new HttpSessionHandshakeInterceptor());;
+                .addInterceptors(new HttpSessionHandshakeInterceptor());
+        registry.addHandler(getWSTerminalHandler(), "/terminal")
+                .addInterceptors(new HttpSessionHandshakeInterceptor());
     }
 
     @Bean
     public WebSocketHandler getWSHandler() {
         return new WSHandler();
+    }
+
+    @Bean
+    public WebSocketHandler getWSTerminalHandler() {
+        return new WSTerminalHandler();
     }
 
 }

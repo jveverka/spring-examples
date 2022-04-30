@@ -3,6 +3,7 @@ package itx.examples.springboot.demo.controller;
 import itx.examples.springboot.demo.config.ApplicationConfig;
 import itx.examples.springboot.demo.dto.BuildInfo;
 import itx.examples.springboot.demo.dto.DataMessage;
+import itx.examples.springboot.demo.dto.NumberWrapper;
 import itx.examples.springboot.demo.dto.RequestInfo;
 import itx.examples.springboot.demo.dto.generic.ComplexDataPayload;
 import itx.examples.springboot.demo.dto.generic.DataMarker;
@@ -121,6 +122,11 @@ public class DataServiceController {
                 createCookiesMap(request.getCookies()), request.getContentType(),  createHeaderMap(request),
                 request.getProtocol(), createRemoteInfo(request));
         return ResponseEntity.ok(requestInfo);
+    }
+
+    @GetMapping(path="/very-long-number")
+    public ResponseEntity<NumberWrapper> getVeryLongNumber() {
+        return ResponseEntity.ok(new NumberWrapper(4855910445484272258L));
     }
 
     private Map<String, String> createCookiesMap(Cookie[] cookies) {
