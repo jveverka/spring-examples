@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.2'
+	id 'org.springframework.boot' version '2.6.7'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -17,6 +17,6 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.casbin:jcasbin:1.21.0'
+	implementation 'org.casbin:jcasbin:1.22.6'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
