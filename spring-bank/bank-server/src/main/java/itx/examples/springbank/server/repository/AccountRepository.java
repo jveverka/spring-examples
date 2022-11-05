@@ -11,6 +11,4 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
     Optional<AccountEntity> findById(Long id);
 
-    AccountEntity save(AccountEntity entity);
-
 }

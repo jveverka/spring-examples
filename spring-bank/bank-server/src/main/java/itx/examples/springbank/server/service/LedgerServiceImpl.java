@@ -11,8 +11,12 @@ import java.util.Collection;
 @Service
 public class LedgerServiceImpl implements LedgerService {
 
+    private final LedgerRepository ledgerRepository;
+
     @Autowired
-    private LedgerRepository ledgerRepository;
+    public LedgerServiceImpl(LedgerRepository ledgerRepository) {
+        this.ledgerRepository = ledgerRepository;
+    }
 
     @Override
     public void saveRecord(LedgerRecord ledgerRecord) throws ServiceException {

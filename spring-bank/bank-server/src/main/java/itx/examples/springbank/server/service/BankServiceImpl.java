@@ -21,11 +21,14 @@ import java.util.Optional;
 @Service
 public class BankServiceImpl implements BankService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
+    private final ClientRepository clientRepository;
 
     @Autowired
-    private ClientRepository clientRepository;
+    public BankServiceImpl(AccountRepository accountRepository, ClientRepository clientRepository) {
+        this.accountRepository = accountRepository;
+        this.clientRepository = clientRepository;
+    }
 
     @Override
     @Transactional

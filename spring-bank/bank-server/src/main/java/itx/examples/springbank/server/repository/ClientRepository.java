@@ -17,8 +17,6 @@ public interface ClientRepository extends JpaRepository<ClientEntity, Long> {
 
     void delete(ClientEntity entity);
 
-    ClientEntity save(ClientEntity entity);
-
     void deleteById(Long id);
 
 }

@@ -17,6 +17,4 @@ public interface LedgerRepository extends JpaRepository<LedgerEntity, Long> {
 
     void delete(LedgerEntity entity);
 
-    LedgerEntity save(LedgerEntity entity);
-
 }

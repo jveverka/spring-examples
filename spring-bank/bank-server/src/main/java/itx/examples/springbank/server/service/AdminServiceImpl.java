@@ -20,8 +20,12 @@ import java.util.List;
 @Service
 public class AdminServiceImpl implements AdminService {
 
+    private final ClientRepository clientRepository;
+
     @Autowired
-    private ClientRepository clientRepository;
+    public AdminServiceImpl(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 
     @Override
     @Transactional

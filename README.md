@@ -9,7 +9,7 @@ This project contains various simple or not-so simple [Spring Boot](https://spri
 ### Environment setup
 Minimal requirements: Please make sure following software is installed on your PC.
 * [OpenJDK 17](https://adoptium.net/releases.html?variant=openjdk17&jvmVariant=hotspot)
-* [Gradle 7.3](https://gradle.org/install/) or later
+* [Gradle 7.5](https://gradle.org/install/) or later
 
 Please check [full system requirements](docs/system-requirements.md) for more details. 
 

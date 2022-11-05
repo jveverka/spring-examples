@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation('com.fasterxml.jackson.core:jackson-annotations:2.13.2')
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.13.2.2')
-    implementation('org.apache.kafka:kafka-clients:3.1.0')
+    implementation('com.fasterxml.jackson.core:jackson-annotations:2.13.4')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.13.4.2')
+    implementation('org.apache.kafka:kafka-clients:3.3.1')
 }

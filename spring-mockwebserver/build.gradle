@@ -1,6 +1,6 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.7'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'java'
 }
 
@@ -17,9 +17,9 @@ repositories {
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter')
 	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation("com.squareup.okhttp3:okhttp:4.9.3")
+	implementation("com.squareup.okhttp3:okhttp:4.10.0")
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
-	testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+	testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
 }
 
 springBoot {
