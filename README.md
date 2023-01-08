@@ -34,6 +34,7 @@ gradle --build-file spring-api-first/build.gradle clean openApiGenerate build te
 * [__spring fileserver__](spring-fileserver) - simple file server ove REST APIs 
 * [__spring_mockwebserver__](spring-mockwebserver) - simple http proxy service calling another service.  
 * [__spring bank__](spring-bank) - simple transactional web application.
+* [__spring_mongo__](spring-mongo) - simple springboot + mongodb with testcontainers example.
 
 ### Topics
 * [__Spring Native__](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/) - [Spring native case study.](spring-native)
